@@ -1,0 +1,60 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Gallery extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'image_path',
+        'category',
+        'order',
+        'is_featured',
+    ];
+
+    protected $casts = [
+        'is_featured' => 'boolean',
+    ];
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('is_featured', true);
+    }
+
+    public function scopeByCategory($query, $category)
+    {
+        return $query->where('category', $category);
+    }
+
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order', 'asc');
+    }
+
+    public function getImageUrlAttribute()
+    {
+        if ($this->image_path) {
+            return asset('storage/' . $this->image_path);
+        }
+        return asset('images/default-gallery.jpg');
+    }
+
+    public function getCategoryLabelAttribute()
+    {
+        $categories = [
+            'kegiatan' => 'Kegiatan',
+            'fasilitas' => 'Fasilitas',
+            'wisata' => 'Wisata',
+            'umkm' => 'UMKM',
+            'lainnya' => 'Lainnya',
+        ];
+
+        return $categories[$this->category] ?? 'Lainnya';
+    }
+}
