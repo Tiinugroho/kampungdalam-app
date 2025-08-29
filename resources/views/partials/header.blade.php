@@ -16,7 +16,8 @@
             <ul>
                 <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
                         Beranda
-                    </a></li>
+                    </a>
+                </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">
@@ -32,7 +33,8 @@
                         <li><a href="{{ route('contact') }}"
                                 class="{{ request()->routeIs('contact') ? 'active' : '' }}">
                                 Kontak
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -49,44 +51,8 @@
 
                 <li><a href="{{ route('sgds') }}" class="{{ request()->routeIs('sgds') ? 'active' : '' }}">
                         <span>Data & Statistik</span>
-                    </a></li>
-
-                {{-- <li class="dropdown dropdown-hover-consistent dropdown-statistik">
-                    <a href="#" class="dropdown-toggle">
-                        <span>Data & Statistik</span>
                     </a>
-                    <ul class="dropdown-menu mega-menu">
-                        <div class="mega-menu-content">
-                            <div class="mega-menu-column">
-                                <h6>Statistik Umum</h6>
-                                <li><a href="{{ route('statistics.index') }}">Statistik
-                                        Desa</a></li>
-                                <li><a href="{{ route('statistics.population') }}">Data
-                                        Penduduk</a></li>
-                            </div>
-                            <div class="mega-menu-column">
-                                <h6>Data Sosial</h6>
-                                <li><a href="{{ route('statistics.education') }}">Data
-                                        Pendidikan</a></li>
-                                <li><a href="{{ route('statistics.occupation') }}">Data
-                                        Pekerjaan</a></li>
-                                <li><a href="{{ route('statistics.health') }}">Data
-                                        Kesehatan</a></li>
-                            </div>
-                            <div class="mega-menu-column">
-                                <h6>Data Ekonomi</h6>
-                                <li><a href="{{ route('statistics.infrastructure') }}">
-                                        Data Infrastruktur</a></li>
-                                <li><a href="{{ route('statistics.economic') }}">
-                                        Data Ekonomi</a></li>
-                                <li><a href="{{ route('statistics.social') }}">Data
-                                        Sosial</a></li>
-                                <li><a href="{{ route('statistics.religion') }}">Data
-                                        Agama</a></li>
-                            </div>
-                        </div>
-                    </ul>
-                </li> --}}
+                </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">
@@ -100,7 +66,7 @@
                 </li>
 
                 <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">
-                        Produk Hukum
+                        Kontak
                     </a></li>
             </ul>
         </nav>

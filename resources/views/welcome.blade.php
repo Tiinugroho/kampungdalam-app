@@ -46,7 +46,7 @@
                         <div class="icon icon-white" style="padding-top: 1.3rem;"><img
                                 src="{{ asset('vector/Asset189.svg') }}" alt=""></div>
                         <h4 class="title">
-                            <a href="#">Potensi Desa</a>
+                            <a href="{{url('statistik')}}">Potensi Desa</a>
                         </h4>
                     </div>
                 </div>
@@ -240,38 +240,7 @@
             </div>
         </div>
     </section>
-    <!-- Statistics Section -->
-    <section id="village-stats" class="village-stats section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2 class="section-heading">Data Statistik Desa</h2>
-            <p class="section-subtitle">Informasi lengkap tentang kondisi demografis dan sosial ekonomi</p>
-        </div>
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="bi bi-people-fill"></i>
-                        </div>
-                        <h4>Demografi (Tahun {{ $populationStats->year ?? 'Tidak diketahui' }})</h4>
-                        <div class="stat-details">
-                            <div class="stat-item">
-                                <span class="stat-label">Laki-laki:</span>
-                                <span
-                                    class="stat-value">{{ number_format($populationStats->male_population ?? 1275) }}</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Perempuan:</span>
-                                <span
-                                    class="stat-value">{{ number_format($populationStats->female_population ?? 1225) }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
+        
     <!-- Services Section -->
     <section id="services" class="services section">
         <div class="container section-title" data-aos="fade-up">

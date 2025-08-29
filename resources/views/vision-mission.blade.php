@@ -39,7 +39,7 @@ ROUTE: /profil/visi-misi
                             <div class="icon-wrapper">
                                 <i class="bi bi-eye"></i>
                             </div>
-                            <h2>Visi</h2>
+                            <h2 class="text-white">Visi</h2>
                         </div>
                         <div class="card-content">
                             <blockquote class="vision-text">
@@ -54,9 +54,9 @@ ROUTE: /profil/visi-misi
                     <div class="mission-card">
                         <div class="card-header">
                             <div class="icon-wrapper">
-                                <i class="bi bi-target"></i>
+                                <i class="bi bi-grid"></i>
                             </div>
-                            <h2>Misi</h2>
+                            <h2 class="text-white">Misi</h2>
                         </div>
                         <div class="card-content">
                             <ul class="mission-list">
@@ -139,7 +139,7 @@ ROUTE: /profil/visi-misi
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="goal-card">
                         <div class="goal-icon">
-                            <i class="bi bi-leaf"></i>
+                            <i class="bi bi-tree"></i>
                         </div>
                         <h4>Lingkungan Berkelanjutan</h4>
                         <p>Menjaga kelestarian lingkungan dan mengembangkan desa yang ramah lingkungan untuk generasi
