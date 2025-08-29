@@ -1,140 +1,82 @@
-<nav class="pc-sidebar">
-    <div class="navbar-wrapper">
-        <div class="m-header">
-            <a href="{{ route('admin.dashboard') }}" class="b-brand text-primary">
-                <div class="d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('Lambang_Kabupaten_Siak.png') }}" class="img-fluid" alt="logo">
-                    <span class="m-text">Admin Panel Kelurahan Kampung Dalam</span>
-                </div>
-            </a>
-        </div>
-        <div class="navbar-content">
-            <ul class="pc-navbar">
-                
-                {{-- Dashboard --}}
-                <li class="pc-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('admin.dashboard') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
-                        <span class="pc-mtext">Dashboard</span>
-                    </a>
-                </li>
+<nav id="sidebar" class="sidebar js-sidebar">
+    <div class="sidebar-content js-simplebar">
+        <a class="sidebar-brand" href="{{ route('admin.dashboard') }}">
+            <div class="d-flex align-items-center justify-content-center gap-3">
+                <img src="{{ asset('Lambang_Kabupaten_Siak.png') }}" alt="Logo" class="img-fluid" style="width: 40px; height: 50px;">
+                <span class="align-middle">Admin Panel<br>Kampung Dalam</span>
+            </div>
+        </a>
 
-                {{-- Caption: Master Data --}}
-                <li class="pc-item pc-caption">
-                    <label>Master Data</label>
-                    <i class="ti ti-database"></i>
-                </li>
+        <ul class="sidebar-nav">
+            <li class="sidebar-header">Dashboard</li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.dashboard') }}">
+                    <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
+                </a>
+            </li>
 
-                {{-- Village Profile --}}
-                <li class="pc-item {{ request()->routeIs('admin.village-profile.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.village-profile.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-home"></i></span>
-                        <span class="pc-mtext">Village Profile</span>
-                    </a>
-                </li>
+            <li class="sidebar-header">Profil Desa</li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.village-profiles.index') }}">
+                    <i class="align-middle" data-feather="info"></i> <span class="align-middle">Profil Desa</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.village-officials.index') }}">
+                    <i class="align-middle" data-feather="users"></i> <span class="align-middle">Perangkat Desa</span>
+                </a>
+            </li>
 
-                {{-- Village Officials --}}
-                <li class="pc-item {{ request()->routeIs('admin.village-officials.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.village-officials.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-users"></i></span>
-                        <span class="pc-mtext">Village Officials</span>
-                    </a>
-                </li>
+            <li class="sidebar-header">Informasi & Layanan</li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.services.index') }}">
+                    <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Layanan</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.news.index') }}">
+                    <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Berita</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.faqs.index') }}">
+                    <i class="align-middle" data-feather="help-circle"></i> <span class="align-middle">FAQ</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.galleries.index') }}">
+                    <i class="align-middle" data-feather="image"></i> <span class="align-middle">Galeri</span>
+                </a>
+            </li>
 
-                {{-- Services --}}
-                <li class="pc-item {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.services.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-briefcase"></i></span>
-                        <span class="pc-mtext">Services</span>
-                    </a>
-                </li>
+            <li class="sidebar-header">Potensi Desa</li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.tourism-potentials.index') }}">
+                    <i class="align-middle" data-feather="map-pin"></i> <span class="align-middle">Wisata</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.umkm.index') }}">
+                    <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">UMKM</span>
+                </a>
+            </li>
 
-                {{-- Caption: Content --}}
-                <li class="pc-item pc-caption">
-                    <label>Content</label>
-                    <i class="ti ti-edit"></i>
-                </li>
+            <li class="sidebar-header">Statistik</li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.population') }}"><i class="align-middle" data-feather="users"></i> Penduduk</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.education') }}"><i class="align-middle" data-feather="book"></i> Pendidikan</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.occupation') }}"><i class="align-middle" data-feather="briefcase"></i> Pekerjaan</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.health') }}"><i class="align-middle" data-feather="heart"></i> Kesehatan</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.infrastructure') }}"><i class="align-middle" data-feather="cpu"></i> Infrastruktur</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.economic') }}"><i class="align-middle" data-feather="trending-up"></i> Ekonomi</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.social') }}"><i class="align-middle" data-feather="users"></i> Sosial</a></li>
+            <li class="sidebar-item"><a class="sidebar-link" href="{{ route('admin.statistics.religion') }}"><i class="align-middle" data-feather="activity"></i> Agama</a></li>
 
-                {{-- News --}}
-                <li class="pc-item {{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.news.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-news"></i></span>
-                        <span class="pc-mtext">News</span>
-                    </a>
-                </li>
-
-                {{-- Galleries --}}
-                <li class="pc-item {{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.galleries.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-photo"></i></span>
-                        <span class="pc-mtext">Galleries</span>
-                    </a>
-                </li>
-
-                {{-- Tourism Potentials --}}
-                <li class="pc-item {{ request()->routeIs('admin.tourism-potentials.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.tourism-potentials.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-map"></i></span>
-                        <span class="pc-mtext">Tourism Potentials</span>
-                    </a>
-                </li>
-
-                {{-- UMKM --}}
-                <li class="pc-item {{ request()->routeIs('admin.umkm.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.umkm.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-building-store"></i></span>
-                        <span class="pc-mtext">UMKM</span>
-                    </a>
-                </li>
-
-                {{-- FAQs --}}
-                <li class="pc-item {{ request()->routeIs('admin.faqs.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.faqs.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-help"></i></span>
-                        <span class="pc-mtext">FAQs</span>
-                    </a>
-                </li>
-
-                {{-- Caption: Statistics --}}
-                <li class="pc-item pc-caption">
-                    <label>Statistics</label>
-                    <i class="ti ti-chart-bar"></i>
-                </li>
-
-                {{-- Statistics --}}
-                <li class="pc-item pc-hasmenu {{ request()->routeIs('admin.statistics.*') ? 'active open' : '' }}">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-chart-bar"></i></span>
-                        <span class="pc-mtext">Statistics</span>
-                        <span class="pc-arrow"><i class="ti ti-chevron-right"></i></span>
-                    </a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.population*') ? 'active' : '' }}" href="{{ route('admin.statistics.population') }}">Population</a></li>
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.education*') ? 'active' : '' }}" href="{{ route('admin.statistics.education') }}">Education</a></li>
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.occupation*') ? 'active' : '' }}" href="{{ route('admin.statistics.occupation') }}">Occupation</a></li>
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.health*') ? 'active' : '' }}" href="{{ route('admin.statistics.health') }}">Health</a></li>
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.infrastructure*') ? 'active' : '' }}" href="{{ route('admin.statistics.infrastructure') }}">Infrastructure</a></li>
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.economic*') ? 'active' : '' }}" href="{{ route('admin.statistics.economic') }}">Economic</a></li>
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.social*') ? 'active' : '' }}" href="{{ route('admin.statistics.social') }}">Social</a></li>
-                        <li class="pc-item"><a class="pc-link {{ request()->routeIs('admin.statistics.religion*') ? 'active' : '' }}" href="{{ route('admin.statistics.religion') }}">Religion</a></li>
-                    </ul>
-                </li>
-
-                {{-- Caption: User Management --}}
-                <li class="pc-item pc-caption">
-                    <label>User Management</label>
-                    <i class="ti ti-user"></i>
-                </li>
-
-                {{-- Users --}}
-                <li class="pc-item {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.users.index') }}" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-user"></i></span>
-                        <span class="pc-mtext">Users</span>
-                    </a>
-                </li>
-
-            </ul>
-        </div>
+            <li class="sidebar-header">Manajemen User</li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ route('admin.users.index') }}">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Users</span>
+                </a>
+            </li>
+        </ul>
     </div>
 </nav>

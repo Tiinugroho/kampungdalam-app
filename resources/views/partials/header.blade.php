@@ -47,7 +47,11 @@
                     </ul>
                 </li>
 
-                <li class="dropdown dropdown-hover-consistent dropdown-statistik">
+                <li><a href="{{ route('sgds') }}" class="{{ request()->routeIs('sgds') ? 'active' : '' }}">
+                        <span>Data & Statistik</span>
+                    </a></li>
+
+                {{-- <li class="dropdown dropdown-hover-consistent dropdown-statistik">
                     <a href="#" class="dropdown-toggle">
                         <span>Data & Statistik</span>
                     </a>
@@ -82,7 +86,7 @@
                             </div>
                         </div>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">
@@ -90,7 +94,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('tourism') }}">Wisata</a></li>
-                        <li><a href="{{ route('umkm') }}">UMKM</a></li>
+                        <li><a href="http://umkm.kampungdalam.com/">UMKM</a></li>
                         <li><a href="{{ route('gallery') }}">Galeri</a></li>
                     </ul>
                 </li>
@@ -102,12 +106,12 @@
         </nav>
 
         <!-- Header Actions - Moved to the right -->
-        {{-- <div class="header-actions d-flex align-items-center">
+        <div class="header-actions d-flex align-items-center">
             <!-- Search Button for Desktop -->
-            <button type="button" class="search-toggle btn btn-outline-primary d-none d-md-flex" data-bs-toggle="modal"
+            {{-- <button type="button" class="search-toggle btn btn-outline-primary d-none d-md-flex" data-bs-toggle="modal"
                 data-bs-target="#searchModal">
                 <i class="bi bi-search"></i>
-            </button>
+            </button> --}}
 
             <!-- Mobile Navigation Toggle - FIXED: Clean class structure -->
             <button class="mobile-nav-toggle d-lg-none" type="button">
@@ -115,7 +119,7 @@
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </button>
-        </div> --}}
+        </div>
     </div>
 
     <!-- Mobile Navigation Menu -->
@@ -165,33 +169,9 @@
                     </ul>
                 </li>
 
-                <li class="mobile-dropdown">
-                    <a href="#" class="mobile-dropdown-toggle">
-                        <i class="bi bi-bar-chart"></i>
-                        <span>Data & Statistik</span>
-                        <i class="mobile-toggle-icon"></i>
-                    </a>
-                    <ul class="mobile-dropdown-menu">
-                        <li><a href="{{ route('statistics.index') }}"><i class="bi bi-graph-up"></i> Statistik
-                                Desa</a></li>
-                        <li><a href="{{ route('statistics.population') }}"><i class="bi bi-people"></i> Data
-                                Penduduk</a></li>
-                        <li><a href="{{ route('statistics.education') }}"><i class="bi bi-book"></i> Data
-                                Pendidikan</a></li>
-                        <li><a href="{{ route('statistics.occupation') }}"><i class="bi bi-briefcase"></i> Data
-                                Pekerjaan</a></li>
-                        <li><a href="{{ route('statistics.health') }}"><i class="bi bi-heart-pulse"></i> Data
-                                Kesehatan</a></li>
-                        <li><a href="{{ route('statistics.infrastructure') }}"><i class="bi bi-building"></i> Data
-                                Infrastruktur</a></li>
-                        <li><a href="{{ route('statistics.economic') }}"><i class="bi bi-currency-dollar"></i> Data
-                                Ekonomi</a></li>
-                        <li><a href="{{ route('statistics.social') }}"><i class="bi bi-people-fill"></i> Data
-                                Sosial</a></li>
-                        <li><a href="{{ route('statistics.religion') }}"><i class="bi bi-peace"></i> Data Agama</a>
-                        </li>
-                    </ul>
-                </li>
+                <li><a href="{{ route('sgds') }}" class="{{ request()->routeIs('sgds') ? 'active' : '' }}">
+                        <i class="bi bi-house-door"></i> Data & Statistik
+                    </a></li>
 
                 <li class="mobile-dropdown">
                     <a href="#" class="mobile-dropdown-toggle">
@@ -211,14 +191,6 @@
                     </a></li>
             </ul>
 
-            <!-- Mobile Search -->
-            <div class="mobile-search mt-4">
-                <button type="button" class="mobile-search-btn" data-bs-toggle="modal"
-                    data-bs-target="#searchModal">
-                    <i class="bi bi-search"></i>
-                    <span>Pencarian</span>
-                </button>
-            </div>
         </div>
     </div>
 
@@ -309,7 +281,7 @@
 
     .logo-text h1 {
         color: white;
-        font-size: 1.2rem;
+        font-size: 1rem;
         margin: 0;
         font-weight: 600;
         letter-spacing: -0.025em;
@@ -483,7 +455,7 @@
         list-style: none;
         display: flex;
         align-items: center;
-        /* gap: 1rem; */
+        gap: .5rem;
     }
 
     .navmenu li {
@@ -730,7 +702,7 @@
     }
 
     .mobile-sitename {
-        font-size: 1.1rem;
+        /* font-size: .5rem; */
         font-weight: 800;
         color: var(--primary-blue);
         letter-spacing: -0.025em;

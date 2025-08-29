@@ -10,23 +10,23 @@ class VillageProfileController extends Controller
 {
     public function index()
     {
-        $profile = VillageProfile::first();
-        return view('admin.village-profile.index', compact('profile'));
+        $villageProfiles = VillageProfile::get();
+        return view('admin.village-profile.index', compact('villageProfiles'));
     }
 
     public function edit()
     {
-        $profile = VillageProfile::first();
-        if (!$profile) {
-            $profile = VillageProfile::create([]);
+        $villageProfiles = VillageProfile::first();
+        if (!$villageProfiles) {
+            $villageProfiles = VillageProfile::create([]);
         }
-        return view('admin.village-profile.edit', compact('profile'));
+        return view('admin.village-profile.edit', compact('villageProfiles'));
     }
 
     public function update(Request $request)
     {
         $request->validate([
-            'village_name' => 'required|string|max:255',
+            'village_name' => 'string|max:255',
             'about' => 'nullable|string',
             'history' => 'nullable|string',
             'vision' => 'nullable|string',
@@ -41,11 +41,11 @@ class VillageProfileController extends Controller
             'contact_address' => 'nullable|string',
         ]);
 
-        $profile = VillageProfile::first();
-        if (!$profile) {
-            $profile = VillageProfile::create($request->all());
+        $villageProfiles = VillageProfile::first();
+        if (!$villageProfiles) {
+            $villageProfiles = VillageProfile::create($request->all());
         } else {
-            $profile->update($request->all());
+            $villageProfiles->update($request->all());
         }
 
         return redirect()->route('admin.village-profile.index')

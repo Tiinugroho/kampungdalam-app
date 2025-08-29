@@ -28,77 +28,7 @@
                     </div>
                 </div>
                 <!-- Vector Illustration -->
-                <div class="col-lg-4" data-aos="fade-left" data-aos-delay="300">
-                    <div class="hero-vector">
-                        {{-- <svg viewBox="0 0 400 300" class="village-illustration">
-                            <!-- Village illustration -->
-                            <defs>
-                                <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#E0F6FF;stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="grassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#90EE90;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#228B22;stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="houseGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#D2691E;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#8B4513;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                                                        <!-- Sky -->
-                            <rect width="400" height="200" fill="url(#skyGradient)"/>
-                                                        <!-- Ground -->
-                            <ellipse cx="200" cy="280" rx="200" ry="40" fill="url(#grassGradient)"/>
-                                                        <!-- Mountains -->
-                            <polygon points="0,200 100,120 200,200" fill="#8B7355" opacity="0.8"/>
-                            <polygon points="150,200 250,100 350,200" fill="#A0522D" opacity="0.8"/>
-                                                        <!-- Main House -->
-                            <rect x="150" y="160" width="80" height="60" fill="url(#houseGradient)"/>
-                            <polygon points="150,160 190,130 230,160" fill="#DC143C"/>
-                            <rect x="170" y="190" width="15" height="30" fill="#8B4513"/>
-                            <rect x="195" y="175" width="20" height="20" fill="#87CEEB" stroke="#4682B4" stroke-width="2"/>
-                                                        <!-- Side Houses -->
-                            <rect x="50" y="180" width="60" height="40" fill="url(#houseGradient)"/>
-                            <polygon points="50,180 80,160 110,180" fill="#DC143C"/>
-                                                        <rect x="280" y="175" width="55" height="45" fill="url(#houseGradient)"/>
-                            <polygon points="280,175 307.5,155 335,175" fill="#DC143C"/>
-                                                        <!-- Trees -->
-                            <circle cx="320" cy="180" r="18" fill="#228B22"/>
-                            <rect x="315" y="180" width="10" height="25" fill="#8B4513"/>
-                                                        <circle cx="30" cy="185" r="15" fill="#228B22"/>
-                            <rect x="26" y="185" width="8" height="20" fill="#8B4513"/>
-                                                        <circle cx="370" cy="190" r="12" fill="#228B22"/>
-                            <rect x="367" y="190" width="6" height="18" fill="#8B4513"/>
-                                                        <!-- Sun with rays -->
-                            <circle cx="350" cy="50" r="25" fill="#FFD700" opacity="0.9"/>
-                            <g stroke="#FFD700" stroke-width="3" opacity="0.7">
-                                <line x1="350" y1="15" x2="350" y2="5"/>
-                                <line x1="380" y1="50" x2="390" y1="50"/>
-                                <line x1="350" y1="85" x2="350" y2="95"/>
-                                <line x1="320" y1="50" x2="310" y1="50"/>
-                                <line x1="372" y1="28" x2="379" y2="21"/>
-                                <line x1="372" y1="72" x2="379" y2="79"/>
-                                <line x1="328" y1="72" x2="321" y2="79"/>
-                                <line x1="328" y1="28" x2="321" y2="21"/>
-                            </g>
-                                                        <!-- Clouds -->
-                            <g fill="white" opacity="0.8">
-                                <ellipse cx="100" cy="60" rx="30" ry="18"/>
-                                <ellipse cx="120" cy="65" rx="25" ry="15"/>
-                                <ellipse cx="80" cy="65" rx="20" ry="12"/>
-                            </g>
-                                                        <!-- Birds -->
-                            <g fill="#2F4F4F" opacity="0.6">
-                                <path d="M 120 80 Q 125 75 130 80 Q 135 75 140 80" stroke="#2F4F4F" stroke-width="2" fill="none"/>
-                                <path d="M 200 90 Q 205 85 210 90 Q 215 85 220 90" stroke="#2F4F4F" stroke-width="2" fill="none"/>
-                            </g>
-                                                        <!-- Road -->
-                            <path d="M 0 240 Q 200 220 400 250" stroke="#696969" stroke-width="8" fill="none" opacity="0.7"/>
-                            <path d="M 0 240 Q 200 220 400 250" stroke="#DCDCDC" stroke-width="2" fill="none" stroke-dasharray="10,5"/>
-                        </svg> --}}
-                    </div>
-                </div>
+
             </div>
             <!-- Statistics Cards -->
             <div class="row gy-4 mt-5 text-white">
@@ -107,31 +37,34 @@
                         <div class="icon icon-white" style="padding-top: 1.3rem;"><img
                                 src="{{ asset('vector/Asset190.svg') }}" alt="" class="img-fluid"></div>
                         <h4 class="title">
-                            <a href="">Layanan Masyarakat asas</a>
+                            <a href="#">Layanan Masyarakat asas</a>
                         </h4>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="200">
                     <div class="icon-box hover-lift">
-                        <div class="icon icon-white" style="padding-top: 1.3rem;"><img src="{{asset('vector/Asset189.svg')}}" alt=""></div>
+                        <div class="icon icon-white" style="padding-top: 1.3rem;"><img
+                                src="{{ asset('vector/Asset189.svg') }}" alt=""></div>
                         <h4 class="title">
-                            <a href="">Potensi Desa</a>
+                            <a href="#">Potensi Desa</a>
                         </h4>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="300">
                     <div class="icon-box hover-lift">
-                        <div class="icon icon-white" style="padding-top: 1.3rem;"><img src="{{asset('vector/Asset187.svg')}}" alt=""></div>
+                        <div class="icon icon-white" style="padding-top: 1.3rem;"><img
+                                src="{{ asset('vector/Asset187.svg') }}" alt=""></div>
                         <h4 class="title">
-                            <a href="">Pembangunan Desa</a>
+                            <a href="#">Pembangunan Desa</a>
                         </h4>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3" data-aos="zoom-out" data-aos-delay="400">
                     <div class="icon-box hover-lift">
-                        <div class="icon icon-white" style="padding-top: 1.3rem;"><img src="{{asset('vector/Asset192.svg')}}" alt=""></div>
+                        <div class="icon icon-white" style="padding-top: 1.3rem;"><img
+                                src="{{ asset('vector/Asset192.svg') }}" alt=""></div>
                         <h4 class="title">
-                            <a href="">Keuangan Desa</a>
+                            <a href="#">Keuangan Desa</a>
                         </h4>
                     </div>
                 </div>
@@ -335,69 +268,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="bi bi-mortarboard"></i>
-                        </div>
-                        <h4>Pendidikan (Tahun {{ $educationStats->year ?? 'Tidak diketahui' }})</h4>
-                        <div class="stat-details">
-                            @if ($educationStats)
-                                <div class="stat-item">
-                                    <span class="stat-label">SD/Sederajat:</span>
-                                    <span class="stat-value">{{ $educationStats->elementary ?? 0 }}</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">SMP/Sederajat:</span>
-                                    <span class="stat-value">{{ $educationStats->junior_high ?? 0 }}</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">SMA/Sederajat:</span>
-                                    <span class="stat-value">{{ $educationStats->senior_high ?? 0 }}</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Perguruan Tinggi:</span>
-                                    <span class="stat-value">
-                                        {{ ($educationStats->diploma ?? 0) + ($educationStats->bachelor ?? 0) + ($educationStats->master ?? 0) + ($educationStats->doctorate ?? 0) }}
-                                    </span>
-                                </div>
-                            @else
-                                <p>Tidak ada data pendidikan untuk tahun ini.</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-card">
-                        <div class="stat-icon">
-                            <i class="bi bi-briefcase"></i>
-                        </div>
-                        <h4>Mata Pencaharian (Tahun {{ $occupationStats->year ?? 'Tidak diketahui' }})</h4>
-                        <div class="stat-details">
-                            @if ($occupationStats)
-                                <div class="stat-item">
-                                    <span class="stat-label">Petani:</span>
-                                    <span class="stat-value">{{ $occupationStats->farmer ?? 0 }}</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Pedagang:</span>
-                                    <span class="stat-value">{{ $occupationStats->trader ?? 0 }}</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">PNS:</span>
-                                    <span class="stat-value">{{ $occupationStats->civil_servant ?? 0 }}</span>
-                                </div>
-                                <div class="stat-item">
-                                    <span class="stat-label">Lainnya:</span>
-                                    <span
-                                        class="stat-value">{{ ($occupationStats->private_employee ?? 0) + ($occupation->entrepreneur ?? 0) + ($occupation->others ?? 0) }}</span>
-                                </div>
-                            @else
-                                <p>Tidak ada data pendidikan untuk tahun ini.</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -440,10 +311,60 @@
         </div>
     </section>
     <!-- UMKM & Tourism Section -->
+            
+    <section id="umkm-tourism" class="umkm-tourism section" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.85) 0%, rgba(5, 150, 105, 0.75) 100%);">
+        <div class="container hero-content py-5">
+            <div class="row align-items-center" data-aos="zoom-out">
+                <!-- Kolom Penjelasan (Kiri) -->
+
+                <div class="col-lg-7">
+                    <h1 class="hero-title mb-4">Istana Siak Sri Indrapura</h1>
+                    <p class="hero-desc">
+                        Istana Siak Sri Indrapura, yang juga dikenal sebagai <strong>Istana Asserayah Hasyimiah</strong>,
+                        merupakan salah satu peninggalan sejarah terbesar di Provinsi Riau dan simbol kejayaan
+                        Kesultanan Siak pada abad ke-18 hingga awal abad ke-20. Dibangun pada tahun 1889 oleh
+                        Sultan Syarif Hasyim Abdul Jalil Syaifuddin, istana ini memadukan arsitektur
+                        Melayu, Arab, dan Eropa, sehingga menciptakan bangunan megah yang anggun sekaligus unik.
+                    </p>
+
+                    <p class="hero-desc">
+                        Dengan luas mencapai lebih dari <strong>1.000 meter persegi</strong>, Istana Siak
+                        memiliki dua lantai yang menyimpan berbagai peninggalan bersejarah, termasuk
+                        singgasana berlapis emas, alat musik kuno <em>Komet</em> yang hanya ada dua di dunia,
+                        koleksi porselen dari Eropa, hingga senjata-senjata antik. Setiap ruangan di dalamnya
+                        merepresentasikan kemegahan, kekuatan, dan kebijaksanaan Kesultanan Siak dalam memimpin
+                        wilayahnya pada masa lalu.
+                    </p>
+
+                    <p class="hero-desc">
+                        Kini, Istana Siak tidak hanya menjadi ikon kebanggaan masyarakat Kabupaten Siak,
+                        tetapi juga menjadi <strong>destinasi wisata sejarah</strong> yang wajib dikunjungi
+                        bagi siapa pun yang ingin memahami perjalanan panjang budaya Melayu di Nusantara.
+                        Keindahan arsitektur, nilai sejarah, dan cerita kejayaan yang melekat menjadikan
+                        Istana Siak sebagai saksi bisu masa keemasan Riau serta bukti nyata warisan budaya
+                        yang masih terjaga hingga hari ini.
+                    </p>
+
+                    <p class="hero-desc">
+                        Mengunjungi Istana Siak adalah perjalanan menapak tilas sejarah, menyelami budaya,
+                        sekaligus merasakan atmosfer kerajaan yang masih terasa kuat dalam setiap sudutnya.
+                        Tempat ini tidak hanya sekadar bangunan bersejarah, tetapi juga cerminan identitas
+                        masyarakat Melayu yang kaya akan tradisi, seni, dan kebesaran peradaban.
+                    </p>
+                </div>
+
+                <!-- Kolom Gambar (Kanan) -->
+                <div class="col-lg-5">
+                    <img src="{{ asset('istana.jpg') }}" alt="Istana Siak" class="img-fluid w-100 rounded shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="umkm-tourism" class="umkm-tourism section">
         <div class="container section-title" data-aos="fade-up">
-            <h2 class="section-heading">UMKM & Wisata Desa</h2>
-            <p class="section-subtitle">Potensi ekonomi dan pariwisata Desa Kampung Dalam</p>
+            <h2 class="section-heading">UMKM & Wisata</h2>
+            <p class="section-subtitle">Potensi ekonomi dan pariwisata Istana Siak</p>
         </div>
         <div class="container">
             <div class="row">
@@ -730,70 +651,44 @@
             </div>
         </div>
     </section>
+
     <!-- FAQ Section -->
-    <section id="faq" class="faq section">
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Pertanyaan yang Sering Diajukan</h2>
-            <p>Jawaban untuk pertanyaan umum seputar layanan dan administrasi desa</p>
-        </div>
-        <div class="container">
+    <section id="faq" class="faq section bg-light">
+        <div class="container" data-aos="fade-up">
             <div class="row justify-content-center">
-                <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-                    <div class="faq-container">
-                        @forelse($faqs->take(5) as $faq)
-                            <div class="faq-item">
-                                <h3>{{ $faq->question }}</h3>
-                                <div class="faq-content">
-                                    <p>{{ $faq->answer }}</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div>
-                        @empty
-                            <div class="faq-item">
-                                <h3>Bagaimana cara mengurus surat keterangan domisili?</h3>
-                                <div class="faq-content">
-                                    <p>Untuk mengurus surat keterangan domisili, Anda perlu membawa KTP asli, KK asli, dan
-                                        surat pengantar dari RT/RW. Proses pengurusan memakan waktu 1-2 hari kerja.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div>
-                            <div class="faq-item">
-                                <h3>Apa saja syarat untuk mendapatkan surat keterangan tidak mampu?</h3>
-                                <div class="faq-content">
-                                    <p>Syarat untuk SKTM meliputi: KTP dan KK asli, surat pengantar RT/RW, dan surat
-                                        keterangan penghasilan. Dokumen akan diverifikasi terlebih dahulu sebelum
-                                        diterbitkan.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div>
-                            <div class="faq-item">
-                                <h3>Berapa biaya pengurusan dokumen di desa?</h3>
-                                <div class="faq-content">
-                                    <p>Sebagian besar layanan administrasi desa tidak dikenakan biaya (gratis). Namun untuk
-                                        beberapa layanan tertentu mungkin dikenakan biaya administrasi sesuai ketentuan yang
-                                        berlaku.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div>
-                            <div class="faq-item">
-                                <h3>Kapan jam pelayanan kantor desa?</h3>
-                                <div class="faq-content">
-                                    <p>Kantor desa buka setiap hari Senin-Jumat pukul 08.00-16.00 WIB dan Sabtu pukul
-                                        08.00-12.00 WIB. Untuk hari libur nasional, kantor desa tutup.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div>
-                            <div class="faq-item">
-                                <h3>Bagaimana cara mengajukan bantuan sosial dari desa?</h3>
-                                <div class="faq-content">
-                                    <p>Untuk mengajukan bantuan sosial, silakan datang ke kantor desa dengan membawa dokumen
-                                        lengkap dan mengisi formulir permohonan. Tim akan melakukan survei dan verifikasi
-                                        data.</p>
-                                </div>
-                                <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div>
-                        @endforelse
-                    </div>
+                <div class="col-lg-10">
+                    @if ($faqs->isEmpty())
+                        <div class="text-center py-5">
+                            <i class="bi bi-question-circle display-1 text-muted"></i>
+                            <h3 class="mt-3 text-muted">Belum ada pertanyaan umum yang tersedia.</h3>
+                            <p class="text-muted">Silakan cek kembali nanti.</p>
+                        </div>
+                    @else
+                        <div class="accordion accordion-flush" id="faqAccordion">
+                            @foreach ($faqs as $category => $faqList)
+                                <h3 style="text-transform: capitalize">{{ $category }}</h3>
+                                @foreach ($faqList as $faq)
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading{{ $faq->id }}">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#collapse{{ $faq->id }}"
+                                                aria-expanded="false" aria-controls="collapse{{ $faq->id }}">
+                                                {{ $faq->question }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse{{ $faq->id }}"
+                                            class="accordion-collapse collapse rounded-3 mb-3"
+                                            aria-labelledby="heading{{ $faq->id }}" data-bs-parent="#faqAccordion">
+                                            <div class="accordion-body">
+                                                {!! $faq->answer !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endforeach
+
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -980,6 +875,14 @@
             margin-bottom: 2rem;
             line-height: 1.6;
             max-width: 600px;
+        }
+        .hero-desc {
+            /* font-size: clamp(1.2rem, 2.5vw, 1.6rem); */
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-bottom: 2rem;
+            /* line-height: 1.6; */
+            /* max-width: 600px; */
         }
 
         /* Typing Effect */
@@ -2116,11 +2019,13 @@
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--neutral-gray-200);
+            color: black;
         }
 
         .faq-item:hover {
             box-shadow: var(--shadow-lg);
             border-color: var(--primary-blue-light);
+            color: black;
         }
 
         .faq-item h3 {
@@ -2129,7 +2034,8 @@
             margin: 0;
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--neutral-gray-900);
+            /* color: var(--neutral-gray-900); */
+            color: black;
             cursor: pointer;
             position: relative;
             transition: all 0.3s ease;
@@ -2141,7 +2047,8 @@
 
         .faq-item h3:hover {
             background: var(--primary-blue);
-            color: var(--neutral-white);
+            /* color: var(--neutral-white); */
+            color: black;
         }
 
         .faq-toggle {
@@ -2152,20 +2059,24 @@
 
         .faq-item.active .faq-toggle {
             transform: rotate(90deg);
+            color: black;
         }
 
         .faq-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: black;
         }
 
         .faq-content p {
             padding: 2rem;
             margin: 0;
-            color: var(--neutral-gray-600);
+            /* color: var(--neutral-gray-600); */
             line-height: 1.7;
             font-size: 1rem;
+            color: black;
+
         }
 
         /* Custom Buttons */
@@ -2368,10 +2279,12 @@
             .faq-item h3 {
                 padding: 1.5rem;
                 font-size: 1.1rem;
+                color: black;
             }
 
             .faq-content p {
                 padding: 1.5rem;
+                color: black;
             }
 
             .member {
@@ -2609,6 +2522,25 @@
                 });
                 newsCarousel.addEventListener('mouseleave', function() {
                     carousel.cycle();
+                });
+            }
+
+            const searchInput = document.getElementById(
+                'faqSearch'); // Assuming you have a search input with this ID
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    document.querySelectorAll('#faqAccordion .accordion-item').forEach(item => {
+                        const question = item.querySelector('.accordion-button').textContent
+                            .toLowerCase();
+                        const answer = item.querySelector('.accordion-body').textContent
+                            .toLowerCase();
+                        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                            item.style.display = '';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
                 });
             }
 

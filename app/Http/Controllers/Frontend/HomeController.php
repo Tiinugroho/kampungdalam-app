@@ -4,14 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\VillageProfile;
-use App\Models\PopulationStatistic;
-use App\Models\EducationStatistic;
-use App\Models\OccupationStatistic;
-use App\Models\HealthStatistic;
-use App\Models\InfrastructureStatistic;
-use App\Models\EconomicStatistic;
-use App\Models\SocialStatistic;
-use App\Models\ReligionStatistic;
 use App\Models\News;
 use App\Models\Gallery;
 use App\Models\Service;
@@ -21,8 +13,6 @@ use App\Models\Umkm;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
-use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -31,15 +21,7 @@ class HomeController extends Controller
     {
         // Get village profile
         $profile = VillageProfile::first();
-        // Get latest statistics
-        $populationStats = PopulationStatistic::latestYear()->first();
-        $educationStats = EducationStatistic::latestYear()->first();
-        $occupationStats = OccupationStatistic::latestYear()->first();
-        $healthStats = HealthStatistic::latestYear()->first();
-        $infrastructureStats = InfrastructureStatistic::latestYear()->first();
-        $economicStats = EconomicStatistic::latestYear()->first();
-        $socialStats = SocialStatistic::latestYear()->first();
-        $religionStats = ReligionStatistic::latestYear()->first();
+
         // Get content for homepage
         $latestNews = News::get();
         $featuredGallery = Gallery::featured()->ordered()->take(8)->get();
@@ -47,25 +29,14 @@ class HomeController extends Controller
         $officials = VillageOfficial::active()->ordered()->get();
         $tourismPotentials = TourismPotential::active()->take(4)->get();
         $umkms = Umkm::active()->take(6)->get();
-        $faqs = Faq::active()->get();
+        $faqs = Faq::active()->ordered()->get()->groupBy('category');
+        $categories = Faq::select('category')->distinct()->get();
+
         // Population trend for chart
-        $populationTrend = PopulationStatistic::orderBy('year', 'desc')
-            ->take(5)
-            ->get()
-            ->reverse()
-            ->values();
         // Determine which view to use based on request
         $viewName = request()->is('/') ? 'welcome' : 'home';
         return view($viewName, compact(
             'profile',
-            'populationStats',
-            'educationStats',
-            'occupationStats',
-            'healthStats',
-            'infrastructureStats',
-            'economicStats',
-            'socialStats',
-            'religionStats',
             'latestNews',
             'featuredGallery',
             'services',
@@ -73,7 +44,7 @@ class HomeController extends Controller
             'tourismPotentials',
             'umkms',
             'faqs',
-            'populationTrend'
+            'categories',
         ));
     }
 
@@ -81,15 +52,13 @@ class HomeController extends Controller
     {
         $profile = VillageProfile::first();
         $officials = VillageOfficial::active()->ordered()->get();
-        $populationStats = PopulationStatistic::latestYear()->first();
-        return view('about', compact('profile', 'officials', 'populationStats'));
+        return view('about', compact('profile', 'officials'));
     }
 
     public function history()
     {
         $profile = VillageProfile::first();
-        $historicalData = PopulationStatistic::orderBy('year', 'asc')->get();
-        return view('history', compact('profile', 'historicalData'));
+        return view('history', compact('profile'));
     }
 
     public function visionMission()
@@ -123,9 +92,9 @@ class HomeController extends Controller
         $service = Service::where('slug', $slug)->firstOrFail(); // This will throw 404 if not found
         // Fetch related services (example, adjust as needed)
         $relatedServices = Service::where('slug', '!=', $slug)
-                                  ->inRandomOrder() // TODO: Adjust logic for related services
-                                  ->take(3)
-                                  ->get();
+            ->inRandomOrder() // TODO: Adjust logic for related services
+            ->take(3)
+            ->get();
         return view('services.detail', compact('service', 'relatedServices'));
     }
 

@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\VillageOfficialController;
 use App\Http\Controllers\Admin\TourismPotentialController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
+use App\Http\Controllers\SgdsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\StatisticController as AdminStatisticController;
 
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/statistik', [SgdsController::class, 'index'])->name('sgds');
 
 // Profile Routes
 Route::prefix('profil')->group(function () {
@@ -48,17 +50,6 @@ Route::prefix('informasi')->group(function () {
     Route::get('/layanan/{slug}', [HomeController::class, 'serviceDetail'])->name('services.detail');
     Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 });
-
-// Statistics Routes
-Route::get('statistik/', [StatisticController::class, 'index'])->name('statistics.index');
-Route::get('statistik/penduduk', [StatisticController::class, 'population'])->name('statistics.population');
-Route::get('statistik/pendidikan', [StatisticController::class, 'education'])->name('statistics.education');
-Route::get('statistik/pekerjaan', [StatisticController::class, 'occupation'])->name('statistics.occupation');
-Route::get('statistik/kesehatan', [StatisticController::class, 'health'])->name('statistics.health');
-Route::get('statistik/infrastruktur', [StatisticController::class, 'infrastructure'])->name('statistics.infrastructure');
-Route::get('statistik/ekonomi', [StatisticController::class, 'economic'])->name('statistics.economic');
-Route::get('statistik/sosial', [StatisticController::class, 'social'])->name('statistics.social');
-Route::get('statistik/agama', [StatisticController::class, 'religion'])->name('statistics.religion');
 
 // Alternative route names for compatibility
 // Route::get('/statistik', [StatisticController::class, 'index'])->name('statistics');
@@ -107,7 +98,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     // Village Profile Management
-    Route::resource('village-profile', VillageProfileController::class)->except(['show']);
+    Route::resource('village-profiles', VillageProfileController::class);
 
     // Village Officials Management
     Route::resource('village-officials', VillageOfficialController::class);

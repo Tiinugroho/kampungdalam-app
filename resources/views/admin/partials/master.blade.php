@@ -1,171 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- [Head] start -->
 
 <head>
-    <title>Analytics Dashboard | Mantis Bootstrap 5 Admin Template</title>
-    <!-- [Meta] -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description"
-        content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+    <meta name="author" content="AdminKit">
     <meta name="keywords"
-        content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
-    <meta name="author" content="CodedThemes">
+        content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <!-- [Favicon] icon -->
-    <link rel="icon" href="{{ asset('adm/dist/assets/images/favicon.svg') }}" type="image/x-icon">
-    <!-- [Google Font] Family -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
-        id="main-font-link">
-    <!-- [Tabler Icons] https://tablericons.com -->
-    <link rel="stylesheet" href="{{ asset('adm/dist/assets/fonts/tabler-icons.min.css') }}">
-    <!-- [Feather Icons] https://feathericons.com -->
-    <link rel="stylesheet" href="{{ asset('adm/dist/assets/fonts/feather.css') }}">
-    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
-    <link rel="stylesheet" href="{{ asset('adm/dist/assets/fonts/fontawesome.css') }}">
-    <!-- [Material Icons] https://fonts.google.com/icons -->
-    <link rel="stylesheet" href="{{ asset('adm/dist/assets/fonts/material.css') }}">
-    <!-- [Template CSS Files] -->
-    <link rel="stylesheet" href="{{ asset('adm/dist/assets/css/style.css') }}" id="main-style-link">
-    <link rel="stylesheet" href="{{ asset('adm/dist/assets/css/style-preset.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="{{ asset('Lambang_Kabupaten_Siak.png') }}" />
 
+    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+
+    <title>@yield('title') | Admin Kampung Dalam</title>
+
+    <link href="{{ asset('adm/static/css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<!-- [Head] end -->
-<!-- [Body] Start -->
 
-<body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
-    <!-- [ Pre-loader ] start -->
-    {{-- <div class="loader-bg">
-        <div class="loader-track">
-            <div class="loader-fill"></div>
-        </div>
-    </div> --}}
-    <!-- [ Pre-loader ] End -->
-    <!-- [ Sidebar Menu ] start -->
-    @include('admin.partials.sidebar')
-    <!-- [ Sidebar Menu ] end --> <!-- [ Header Topbar ] start -->
-    @include('admin.partials.header')
-    <!-- [ Header ] end -->
+<body>
+    <div class="wrapper">
+        @include('admin.partials.sidebar')
 
+        <div class="main">
+            @include('admin.partials.header')
 
-
-    <!-- [ Main Content ] start -->
-    <div class="pc-container">
-        <div class="pc-content">
-            <!-- [ breadcrumb ] start -->
-            <div class="page-header">
-    <div class="page-block">
-        <div class="row align-items-center">
-            <div class="col-md-12">
-                <ul class="breadcrumb">
-                    {{-- Always show Home / Dashboard --}}
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('admin.dashboard') }}">Home</a>
-                    </li>
-
-                    @php
-                        $routeName = Route::currentRouteName(); // contoh: "admin.village-profile.index"
-                        $segments = explode('.', $routeName);
-                        // Hasil: ['admin', 'village-profile', 'index']
-                    @endphp
-
-                    {{-- Resource name --}}
-                    @if (isset($segments[1]) && $segments[1] !== 'dashboard')
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('admin.' . $segments[1] . '.index') }}">
-                                {{ Str::title(str_replace('-', ' ', $segments[1])) }}
-                            </a>
-                        </li>
-                    @endif
-
-                    {{-- Action --}}
-                    @if (isset($segments[2]) && $segments[2] !== 'index')
-                        <li class="breadcrumb-item active" aria-current="page">
-                            {{ Str::title(str_replace('-', ' ', $segments[2])) }}
-                        </li>
-                    @endif
-                </ul>
-            </div>
-            <div class="col-md-12">
-                <div class="page-header-title">
-                    <h2 class="mb-0">
-                        @if (isset($segments[1]) && $segments[1] !== 'dashboard')
-                            {{ Str::title(str_replace('-', ' ', $segments[1])) }}
-                        @else
-                            Dashboard
-                        @endif
-
-                        @if (isset($segments[2]) && $segments[2] !== 'index')
-                            - {{ Str::title(str_replace('-', ' ', $segments[2])) }}
-                        @endif
-                    </h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-            <!-- [ breadcrumb ] end -->
-
-            <!-- [ Main Content ] start -->
             @yield('content')
 
-            <!-- [ Main Content ] end -->
+            @include('admin.partials.footer')
         </div>
     </div>
-    <!-- [ Main Content ] end -->
-    @include('admin.partials.footer')
 
-
-    <script src="{{ asset('adm/dist/assets/js/plugins/popper.min.js') }}"></script>
-    <script src="{{ asset('adm/dist/assets/js/plugins/simplebar.min.js') }}"></script>
-    <script src="{{ asset('adm/dist/assets/js/plugins/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('adm/dist/assets/js/fonts/custom-font.js') }}"></script>
-    <script src="{{ asset('adm/dist/assets/js/pcoded.js') }}"></script>
-    <script src="{{ asset('adm/dist/assets/js/plugins/feather.min.js') }}"></script>
-
-
-
-
+    <script src="{{ asset('adm/static/js/app.js') }}"></script>
 
     <script>
-        layout_change('light');
+        document.addEventListener("DOMContentLoaded", function() {
+            var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
+            var gradient = ctx.createLinearGradient(0, 0, 0, 225);
+            gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
+            gradient.addColorStop(1, "rgba(215, 227, 244, 0)");
+            // Line chart
+            new Chart(document.getElementById("chartjs-dashboard-line"), {
+                type: "line",
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                        "Dec"
+                    ],
+                    datasets: [{
+                        label: "Sales ($)",
+                        fill: true,
+                        backgroundColor: gradient,
+                        borderColor: window.theme.primary,
+                        data: [
+                            2115,
+                            1562,
+                            1584,
+                            1892,
+                            1587,
+                            1923,
+                            2566,
+                            2448,
+                            2805,
+                            3438,
+                            2917,
+                            3327
+                        ]
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        intersect: false
+                    },
+                    hover: {
+                        intersect: true
+                    },
+                    plugins: {
+                        filler: {
+                            propagate: false
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            reverse: true,
+                            gridLines: {
+                                color: "rgba(0,0,0,0.0)"
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                stepSize: 1000
+                            },
+                            display: true,
+                            borderDash: [3, 3],
+                            gridLines: {
+                                color: "rgba(0,0,0,0.0)"
+                            }
+                        }]
+                    }
+                }
+            });
+        });
     </script>
-
-
-
-
     <script>
-        change_box_container('false');
+        document.addEventListener("DOMContentLoaded", function() {
+            // Pie chart
+            new Chart(document.getElementById("chartjs-dashboard-pie"), {
+                type: "pie",
+                data: {
+                    labels: ["Chrome", "Firefox", "IE"],
+                    datasets: [{
+                        data: [4306, 3801, 1689],
+                        backgroundColor: [
+                            window.theme.primary,
+                            window.theme.warning,
+                            window.theme.danger
+                        ],
+                        borderWidth: 5
+                    }]
+                },
+                options: {
+                    responsive: !window.MSInputMethodContext,
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    cutoutPercentage: 75
+                }
+            });
+        });
     </script>
-
-
-
     <script>
-        layout_rtl_change('false');
+        document.addEventListener("DOMContentLoaded", function() {
+            // Bar chart
+            new Chart(document.getElementById("chartjs-dashboard-bar"), {
+                type: "bar",
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov",
+                        "Dec"
+                    ],
+                    datasets: [{
+                        label: "This year",
+                        backgroundColor: window.theme.primary,
+                        borderColor: window.theme.primary,
+                        hoverBackgroundColor: window.theme.primary,
+                        hoverBorderColor: window.theme.primary,
+                        data: [54, 67, 41, 55, 62, 45, 55, 73, 60, 76, 48, 79],
+                        barPercentage: .75,
+                        categoryPercentage: .5
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: false
+                            },
+                            stacked: false,
+                            ticks: {
+                                stepSize: 20
+                            }
+                        }],
+                        xAxes: [{
+                            stacked: false,
+                            gridLines: {
+                                color: "transparent"
+                            }
+                        }]
+                    }
+                }
+            });
+        });
     </script>
-
-
     <script>
-        preset_change("preset-1");
+        document.addEventListener("DOMContentLoaded", function() {
+            var markers = [{
+                    coords: [31.230391, 121.473701],
+                    name: "Shanghai"
+                },
+                {
+                    coords: [28.704060, 77.102493],
+                    name: "Delhi"
+                },
+                {
+                    coords: [6.524379, 3.379206],
+                    name: "Lagos"
+                },
+                {
+                    coords: [35.689487, 139.691711],
+                    name: "Tokyo"
+                },
+                {
+                    coords: [23.129110, 113.264381],
+                    name: "Guangzhou"
+                },
+                {
+                    coords: [40.7127837, -74.0059413],
+                    name: "New York"
+                },
+                {
+                    coords: [34.052235, -118.243683],
+                    name: "Los Angeles"
+                },
+                {
+                    coords: [41.878113, -87.629799],
+                    name: "Chicago"
+                },
+                {
+                    coords: [51.507351, -0.127758],
+                    name: "London"
+                },
+                {
+                    coords: [40.416775, -3.703790],
+                    name: "Madrid "
+                }
+            ];
+            var map = new jsVectorMap({
+                map: "world",
+                selector: "#world_map",
+                zoomButtons: true,
+                markers: markers,
+                markerStyle: {
+                    initial: {
+                        r: 9,
+                        strokeWidth: 7,
+                        stokeOpacity: .4,
+                        fill: window.theme.primary
+                    },
+                    hover: {
+                        fill: window.theme.primary,
+                        stroke: window.theme.primary
+                    }
+                },
+                zoomOnScroll: false
+            });
+            window.addEventListener("resize", () => {
+                map.updateSize();
+            });
+        });
     </script>
-
-
     <script>
-        font_change("Public-Sans");
+        document.addEventListener("DOMContentLoaded", function() {
+            var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
+            var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
+            document.getElementById("datetimepicker-dashboard").flatpickr({
+                inline: true,
+                prevArrow: "<span title=\"Previous month\">&laquo;</span>",
+                nextArrow: "<span title=\"Next month\">&raquo;</span>",
+                defaultDate: defaultDate
+            });
+        });
     </script>
 
-
-
-    <!-- [Page Specific JS] start -->
-    <!-- Apex Chart -->
-    <script src="{{ asset('adm/dist/assets/js/plugins/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('adm/dist/assets/js/pages/dashboard-analytics.js') }}"></script>
-    <!-- [Page Specific JS] end -->
 </body>
-<!-- [Body] end -->
 
 </html>
