@@ -43,11 +43,13 @@ class TourismController extends Controller
                 $query->latest();
         }
 
-        $tourismPotentials = $query->paginate(12);
+        // Pagination with query string (supaya filter & search ikut ke halaman berikutnya)
+        $tourismPotentials = $query->paginate(6)->withQueryString();
+
         $featuredTourism = TourismPotential::active()->featured()->take(6)->get();
         $categories = TourismPotential::getCategories();
 
-        return view('frontend.tourism.index', compact(
+        return view('potensi.wisata', compact(
             'tourismPotentials', 
             'featuredTourism', 
             'categories'
@@ -77,7 +79,8 @@ class TourismController extends Controller
         $tourismPotentials = TourismPotential::active()
                                            ->byCategory($category)
                                            ->latest()
-                                           ->paginate(12);
+                                           ->paginate(12)
+                                           ->withQueryString();
 
         $categories = TourismPotential::getCategories();
 

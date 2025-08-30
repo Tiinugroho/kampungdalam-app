@@ -56,7 +56,7 @@ ROUTE: /profil/sgdss
             </div>
 
             <div class="row gy-4">
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-1.jpg') }}" alt="" class="img-fluid">
@@ -68,7 +68,7 @@ ROUTE: /profil/sgdss
                     </div>
                 </div>
                 
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
 
                     <div class="goal-card">
                         <div class="goal-icon">
@@ -80,7 +80,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-3.jpg') }}" alt="" class="img-fluid">
@@ -91,7 +91,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-4.jpg') }}" alt="" class="img-fluid">
@@ -102,7 +102,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-5.jpg') }}" alt="" class="img-fluid">
@@ -113,7 +113,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-6.jpg') }}" alt="" class="img-fluid">
@@ -124,7 +124,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-7.jpg') }}" alt="" class="img-fluid">
@@ -135,7 +135,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-8.jpg') }}" alt="" class="img-fluid">
@@ -146,7 +146,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-9.jpg') }}" alt="" class="img-fluid">
@@ -157,7 +157,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-10.jpg') }}" alt="" class="img-fluid">
@@ -168,7 +168,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-11.jpg') }}" alt="" class="img-fluid">
@@ -179,7 +179,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-12.jpg') }}" alt="" class="img-fluid">
@@ -190,7 +190,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-13.jpg') }}" alt="" class="img-fluid">
@@ -201,7 +201,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-14.jpg') }}" alt="" class="img-fluid">
@@ -212,7 +212,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-15.jpg') }}" alt="" class="img-fluid">
@@ -223,7 +223,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-16.jpg') }}" alt="" class="img-fluid">
@@ -234,7 +234,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-17.jpg') }}" alt="" class="img-fluid">
@@ -245,7 +245,7 @@ ROUTE: /profil/sgdss
                         </h4>
                     </div>
                 </div>
-                <div class="col-lg-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="goal-card">
                         <div class="goal-icon">
                             <img src="{{ asset('SGDS/skor-sdgs-18.jpg') }}" alt="" class="img-fluid">

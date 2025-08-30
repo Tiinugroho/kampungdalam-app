@@ -147,7 +147,7 @@
                     </a>
                     <ul class="mobile-dropdown-menu">
                         <li><a href="{{ route('tourism') }}"><i class="bi bi-camera"></i> Wisata</a></li>
-                        <li><a href="{{ route('umkm') }}"><i class="bi bi-shop"></i> UMKM</a></li>
+                        <li><a href="http://umkm.kampungdalam.com/"><i class="bi bi-shop"></i> UMKM</a></li>
                         <li><a href="{{ route('gallery') }}"><i class="bi bi-images"></i> Galeri</a></li>
                     </ul>
                 </li>

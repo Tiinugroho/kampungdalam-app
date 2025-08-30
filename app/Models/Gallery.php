@@ -45,16 +45,14 @@ class Gallery extends Model
         return asset('images/default-gallery.jpg');
     }
 
-    public function getCategoryLabelAttribute()
+    public static function getCategories()
     {
-        $categories = [
+        return [
             'kegiatan' => 'Kegiatan',
             'fasilitas' => 'Fasilitas',
-            'wisata' => 'Wisata',
-            'umkm' => 'UMKM',
-            'lainnya' => 'Lainnya',
+            'wisata'   => 'Wisata',
+            'umkm'     => 'UMKM',
+            'lainnya'  => 'Lainnya',
         ];
-
-        return $categories[$this->category] ?? 'Lainnya';
     }
 }
