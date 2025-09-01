@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -46,21 +45,34 @@ class AuthenticatedSessionController extends Controller
             return redirect('/')->withErrors(['email' => 'Akun Anda tidak diizinkan login.']);
         }
 
-        return redirect()->intended('/admin/dashboard');
+        return redirect()->intended('/admin/dashboard')
+            ->with('success', 'Selamat datang, ' . $user->name);
     }
-
 
     /**
      * Destroy an authenticated session.
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+
+        // ✅ simpan waktu terakhir logout ke database
+        if ($user) {
+            $user->update([
+                'last_logout_at' => Carbon::now() // simpan kapan terakhir logout
+            ]);
+        }
+
+        $lastUser = $user?->name; // ambil nama user sebelum logout
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/login')
+            ->with('last_login_user', $lastUser)
+            ->with('last_logout_time', now()->toDateTimeString()) // simpan waktu ke sesi
+            ->with('success', 'Anda Berhasil logout, Sampai jumpa lagi!');
     }
 }

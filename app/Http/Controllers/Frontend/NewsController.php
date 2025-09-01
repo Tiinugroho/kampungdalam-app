@@ -16,58 +16,63 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        $query = News::published()->with('author');
+        // Base query for news
+        $query = News::with('author');
+
+        // Apply published filter unless 'all' is requested
+        if (!$request->filled('all')) {
+            $query;
+        }
 
         // Search functionality
-        if ($request->has('search') && $request->search) {
+        if ($request->filled('search')) {
             $searchTerm = $request->search;
-            $query->where(function($q) use ($searchTerm) {
+            $query->where(function ($q) use ($searchTerm) {
                 $q->where('title', 'like', '%' . $searchTerm . '%')
-                  ->orWhere('content', 'like', '%' . $searchTerm . '%')
-                  ->orWhere('excerpt', 'like', '%' . $searchTerm . '%');
+                    ->orWhere('content', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('excerpt', 'like', '%' . $searchTerm . '%');
             });
         }
 
         // Category filtering
-        if ($request->has('category') && $request->category && $request->category !== 'all') {
+        if ($request->filled('category') && $request->category !== 'all') {
             $query->where('category', $request->category);
         }
-        
-        // Get featured news (most viewed) - for the main news page, usually the top 1
-        $featuredNews = News::published()
-            ->with('author')
+
+        // Featured news: top 1 by views
+        $featuredNews = News::with('author')
+
             ->orderBy('views', 'desc')
-            ->take(1)
             ->get();
 
-        // Get popular news (top 5 by views) - for the sidebar
-        $popularNews = News::published()
-            ->with('author')
+        // Popular news: top 5 by views
+        $popularNews = News::with('author')
+
             ->orderBy('views', 'desc')
             ->take(5)
             ->get();
 
-        // Get all news with pagination
+        // All news with pagination
         $allNews = $query->latest('published_at')->paginate(12);
 
-        // If it's an AJAX request, return JSON
+        // AJAX response
         if ($request->ajax()) {
-            // Manually render pagination links to send as HTML string
             $paginationHtml = $allNews->links('pagination::bootstrap-5')->toHtml();
 
-            // Prepare news data for JSON response
-            $newsData = $allNews->map(function($news) {
+            $newsData = $allNews->map(function ($news) {
                 return [
                     'id' => $news->id,
                     'title' => $news->title,
                     'slug' => $news->slug,
                     'excerpt' => Str::limit($news->excerpt, 120),
-                    'content' => $news->content, // Include if needed for client-side rendering
+                    'content' => $news->content,
                     'category' => ucfirst($news->category),
                     'published_at' => $news->published_at->format('d M Y'),
                     'views' => $news->views,
                     'author_name' => $news->author->name ?? 'Admin Desa',
-                    'featured_image_url' => $news->featured_image ? Storage::url('news/' . $news->featured_image) : '/placeholder.svg?height=250&width=400&text=Berita',
+                    'featured_image_url' => $news->featured_image
+                        ? Storage::url('news/' . $news->featured_image)
+                        : '/placeholder.svg?height=250&width=400&text=Berita',
                     'detail_url' => route('news.show', $news->slug),
                 ];
             });
@@ -79,7 +84,7 @@ class NewsController extends Controller
             ]);
         }
 
-        // For initial page load (non-AJAX)
+        // Non-AJAX initial page load
         return view('news.index', compact(
             'featuredNews',
             'popularNews',
@@ -87,13 +92,14 @@ class NewsController extends Controller
         ));
     }
 
+
+
     /**
      * Display the specified news.
      */
     public function show($slug)
     {
-        $news = News::published()
-            ->with('author')
+        $news = News::with('author')
             ->where('slug', $slug)
             ->firstOrFail();
 
@@ -102,10 +108,10 @@ class NewsController extends Controller
 
         // Get related news (random 4, excluding current news)
         $relatedNews = News::published()
-            ->with('author')
             ->where('id', '!=', $news->id)
             ->inRandomOrder()
-            ->take(4)
+            ->limit(4)
+            ->select('id', 'category', 'slug', 'title', 'featured_image', 'published_at')
             ->get();
 
         return view('news.detail', compact('news', 'relatedNews'));

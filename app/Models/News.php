@@ -35,7 +35,7 @@ class News extends Model
     public function scopePublished($query)
     {
         return $query->where('status', 'published')
-                    ->where('published_at', '<=', now());
+            ->where('published_at', '<=', now());
     }
 
     public function scopeDraft($query)
@@ -48,13 +48,6 @@ class News extends Model
         return $query->orderBy('published_at', 'desc');
     }
 
-    public function getFeaturedImageUrlAttribute()
-    {
-        if ($this->featured_image) {
-            return asset('storage/' . $this->featured_image);
-        }
-        return asset('images/default-news.jpg');
-    }
 
     public function getReadingTimeAttribute()
     {

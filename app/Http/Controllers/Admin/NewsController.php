@@ -90,35 +90,36 @@ class NewsController extends Controller
             'category' => 'nullable|string|max:255',
             'excerpt' => 'nullable|string|max:500',
             'content' => 'nullable|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048', // Added webp
+            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'status' => 'required|string|in:draft,published,archived',
             'published_at' => 'nullable|date',
         ]);
 
-        $imageFilename = $news->featured_image; // Ambil nama file yang sudah ada
+        // Cek apakah ada file baru
         if ($request->hasFile('featured_image')) {
-            // Hapus gambar lama jika ada dan bukan placeholder
+            // Hapus gambar lama jika ada
             if ($news->featured_image && Storage::disk('public')->exists('news/' . $news->featured_image)) {
                 Storage::disk('public')->delete('news/' . $news->featured_image);
             }
-            // Simpan file baru dan ambil hanya nama filenya
-            $fullPath = $request->file('featured_image')->store('news', 'public');
-            $imageFilename = basename($fullPath); // Ambil hanya nama file
+            // Simpan gambar baru
+            $imageFilename = $request->file('featured_image')->store('news', 'public');
+            $news->featured_image = basename($imageFilename); // Hanya nama file
         }
 
+        // Update data lain
         $news->update([
             'title' => $request->title,
-            'slug' => Str::slug($request->title), // Use Str::slug
+            'slug' => Str::slug($request->title),
             'category' => $request->category,
             'excerpt' => $request->excerpt,
             'content' => $request->content,
-            'featured_image' => $imageFilename, // Ini akan menjadi hanya nama file
             'status' => $request->status,
             'published_at' => $request->published_at,
         ]);
 
         return redirect()->route('admin.news.index')->with('success', 'Berita berhasil diperbarui.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -132,6 +133,6 @@ class NewsController extends Controller
         $news->delete();
 
         return redirect()->route('admin.news.index')
-                     ->with('success', 'Berita berhasil dihapus.');
+            ->with('success', 'Berita berhasil dihapus.');
     }
 }

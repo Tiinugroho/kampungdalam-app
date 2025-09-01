@@ -24,46 +24,40 @@ class DashboardController extends Controller
     public function index()
     {
         $profile = VillageProfile::first();
-        $latestPopulation = PopulationStatistic::latestYear()->first();
-        
-        // Statistics for dashboard cards
+
+        // Ambil data kependudukan terbaru (kalau ada migration population)
+        $latestPopulation = VillageProfile::latest()->first();
+        // Statistik
         $stats = [
-            'total_population' => $latestPopulation->total_population ?? 0,
-            'total_families' => $latestPopulation->total_families ?? 0,
-            'total_news' => News::count(),
-            'published_news' => News::published()->count(),
-            'draft_news' => News::where('status', 'draft')->count(),
-            'total_services' => Service::count(),
-            'active_services' => Service::active()->count(),
-            'total_officials' => VillageOfficial::count(),
-            'active_officials' => VillageOfficial::active()->count(),
-            'total_galleries' => Gallery::count(),
-            'featured_galleries' => Gallery::featured()->count(),
-            'total_tourism' => TourismPotential::count(),
-            'active_tourism' => TourismPotential::active()->count(),
-            'total_umkm' => Umkm::count(),
-            'active_umkm' => Umkm::active()->count(),
-            'total_users' => User::count(),
+            'total_population'   => $latestPopulation->total_population ?? 0,
+            'total_families'     => $latestPopulation->total_families ?? 0,
+            'total_news'         => News::count(),
+            'published_news'     => News::where('status', 'published')->count(),
+            'draft_news'         => News::where('status', 'draft')->count(),
+            'total_services'     => Service::count(),
+            'active_services'    => Service::where('is_active', true)->count(),
+            'total_officials'    => VillageOfficial::count(),
+            'active_officials'   => VillageOfficial::where('is_active', true)->count(),
+            'total_galleries'    => Gallery::count(),
+            'featured_galleries' => Gallery::where('is_featured', true)->count(),
+            'total_tourism'      => TourismPotential::count(),
+            'active_tourism'     => TourismPotential::where('is_active', true)->count(),
+            'total_umkm'         => Umkm::count(),
+            'active_umkm'        => Umkm::where('is_active', true)->count(),
+            'total_users'        => User::count(),
         ];
 
         // Recent activities
-        $recentNews = News::with('author')->latest()->take(5)->get();
+        $recentNews      = News::with('author')->latest()->take(5)->get();
         $recentGalleries = Gallery::latest()->take(5)->get();
-        $recentUmkm = Umkm::latest()->take(5)->get();
+        $recentUmkm      = Umkm::latest()->take(5)->get();
 
-        // Population trend for chart
-        $populationTrend = PopulationStatistic::orderBy('year', 'desc')
-                                            ->take(5)
-                                            ->get()
-                                            ->reverse()
-                                            ->values();
-
-        // Monthly news statistics
+        // Statistik berita bulanan (untuk chart)
         $monthlyNews = News::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
-                          ->whereYear('created_at', date('Y'))
-                          ->groupBy('month')
-                          ->orderBy('month')
-                          ->get();
+            ->whereYear('created_at', date('Y'))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('count', 'month');
 
         return view('admin.dashboard', compact(
             'profile',
@@ -71,7 +65,6 @@ class DashboardController extends Controller
             'recentNews',
             'recentGalleries',
             'recentUmkm',
-            'populationTrend',
             'monthlyNews'
         ));
     }
@@ -281,25 +274,25 @@ class DashboardController extends Controller
     public function newsReport()
     {
         $newsData = News::with('author')
-                       ->selectRaw('*, MONTH(created_at) as month, YEAR(created_at) as year')
-                       ->orderBy('created_at', 'desc')
-                       ->get();
+            ->selectRaw('*, MONTH(created_at) as month, YEAR(created_at) as year')
+            ->orderBy('created_at', 'desc')
+            ->get();
         return view('admin.reports.news', compact('newsData'));
     }
 
     public function umkmReport()
     {
         $umkmData = Umkm::selectRaw('category, COUNT(*) as count')
-                        ->groupBy('category')
-                        ->get();
+            ->groupBy('category')
+            ->get();
         return view('admin.reports.umkm', compact('umkmData'));
     }
 
     public function tourismReport()
     {
         $tourismData = TourismPotential::selectRaw('category, COUNT(*) as count')
-                                     ->groupBy('category')
-                                     ->get();
+            ->groupBy('category')
+            ->get();
         return view('admin.reports.tourism', compact('tourismData'));
     }
 

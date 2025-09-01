@@ -24,184 +24,75 @@
     <section class="organization-chart section">
         <div class="container">
             <div class="org-chart-container" data-aos="fade-up">
+                {{-- Kepala Desa --}}
+                @php
+                    $head = $officials->firstWhere('position', 'Kepala Desa');
+                    $secretary = $officials->firstWhere('position', 'Sekretaris Desa');
+                    $staffs = $officials->filter(function($item) {
+                        return !in_array($item->position, ['Kepala Desa', 'Sekretaris Desa']);
+                    });
+                @endphp
+
+                @if($head)
                 <div class="org-level level-1">
                     <div class="org-card head-card">
                         <div class="org-photo">
-                            <img src="/placeholder.svg?height=120&width=120&text=Kepala+Desa" alt="Kepala Desa">
+                            <img src="{{ $head->photo_url }}" alt="{{ $head->name }}">
                         </div>
                         <div class="org-info">
-                            <h4>{{ $villageHead->name ?? 'H. Ahmad Syahrial, S.Sos' }}</h4>
-                            <p>Kepala Desa</p>
-                            <span class="period">{{ $villageHead->period ?? '2019-2025' }}</span>
+                            <h4>{{ $head->name }}</h4>
+                            <p>{{ $head->position }}</p>
                         </div>
                     </div>
                 </div>
+                @endif
 
                 <div class="connection-line vertical"></div>
 
+                {{-- Sekretaris --}}
+                @if($secretary)
                 <div class="org-level level-2">
                     <div class="org-card secretary-card">
                         <div class="org-photo">
-                            <img src="/placeholder.svg?height=100&width=100&text=Sekdes" alt="Sekretaris Desa">
+                            <img src="{{ $secretary->photo_url }}" alt="{{ $secretary->name }}">
                         </div>
                         <div class="org-info">
-                            <h4>{{ $secretary->name ?? 'Dra. Siti Aminah' }}</h4>
-                            <p>Sekretaris Desa</p>
-                            <span class="period">{{ $secretary->period ?? '2020-2026' }}</span>
+                            <h4>{{ $secretary->name }}</h4>
+                            <p>{{ $secretary->position }}</p>
                         </div>
                     </div>
                 </div>
+                @endif
 
+                {{-- Staff lainnya --}}
+                @if($staffs->count())
                 <div class="connection-lines">
                     <div class="connection-line vertical short"></div>
                     <div class="connection-line horizontal"></div>
-                    <div class="connection-line vertical short down"></div>
-                    <div class="connection-line vertical short down" style="left: 33.33%"></div>
-                    <div class="connection-line vertical short down" style="left: 66.66%"></div>
-                    <div class="connection-line vertical short down" style="right: 0"></div>
+                    @foreach($staffs as $i => $staff)
+                        <div class="connection-line vertical short down" style="left: {{ $i * (100 / max(1, $staffs->count()-1)) }}%"></div>
+                    @endforeach
                 </div>
 
                 <div class="org-level level-3">
-                    <div class="org-card dept-card">
-                        <div class="org-photo">
-                            <img src="/placeholder.svg?height=80&width=80&text=Kaur+Pembangunan" alt="Kaur Pembangunan">
-                        </div>
-                        <div class="org-info">
-                            <h5>Ir. Bambang Sutrisno</h5>
-                            <p>Kaur Pembangunan</p>
-                            <div class="responsibilities">
-                                <span class="resp-tag">Infrastruktur</span>
-                                <span class="resp-tag">Perencanaan</span>
+                    @foreach($staffs as $staff)
+                        <div class="org-card dept-card">
+                            <div class="org-photo">
+                                <img src="{{ $staff->photo_url }}" alt="{{ $staff->name }}">
+                            </div>
+                            <div class="org-info">
+                                <h5>{{ $staff->name }}</h5>
+                                <p>{{ $staff->position }}</p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="org-card dept-card">
-                        <div class="org-photo">
-                            <img src="/placeholder.svg?height=80&width=80&text=Kaur+Keuangan" alt="Kaur Keuangan">
-                        </div>
-                        <div class="org-info">
-                            <h5>S.E. Ratna Dewi</h5>
-                            <p>Kaur Keuangan</p>
-                            <div class="responsibilities">
-                                <span class="resp-tag">Anggaran</span>
-                                <span class="resp-tag">Pelaporan</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="org-card dept-card">
-                        <div class="org-photo">
-                            <img src="/placeholder.svg?height=80&width=80&text=Kaur+Umum" alt="Kaur Umum">
-                        </div>
-                        <div class="org-info">
-                            <h5>Drs. Hendra Wijaya</h5>
-                            <p>Kaur Umum</p>
-                            <div class="responsibilities">
-                                <span class="resp-tag">Administrasi</span>
-                                <span class="resp-tag">Pelayanan</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="org-card dept-card">
-                        <div class="org-photo">
-                            <img src="/placeholder.svg?height=80&width=80&text=Kaur+Kesra" alt="Kaur Kesejahteraan">
-                        </div>
-                        <div class="org-info">
-                            <h5>S.Sos. Maya Sari</h5>
-                            <p>Kaur Kesejahteraan</p>
-                            <div class="responsibilities">
-                                <span class="resp-tag">Pemberdayaan</span>
-                                <span class="resp-tag">Sosial</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="rt-rw-section section bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center mb-5">
-                    <h2 class="section-heading" data-aos="fade-up">Ketua RT/RW</h2>
-                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-                        Struktur kepemimpinan di tingkat RT dan RW
-                    </p>
-                </div>
-            </div>
-
-            <div class="row gy-4">
-                @for ($i = 1; $i <= 4; $i++)
-                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ $i * 100 }}">
-                        <div class="rt-card">
-                            <div class="rt-header">
-                                <div class="rt-icon">
-                                    <i class="bi bi-people"></i>
-                                </div>
-                                <h4>RT {{ sprintf('%02d', $i) }}</h4>
-                            </div>
-                            <div class="rt-info">
-                                <h5>Bapak RT {{ $i }}</h5>
-                                <p class="rt-area">Kampung Dalam {{ ['Utara', 'Tengah', 'Selatan', 'Timur'][$i - 1] }}</p>
-                                <div class="rt-stats">
-                                    <div class="stat-item">
-                                        <span class="stat-number">{{ rand(150, 250) }}</span>
-                                        <span class="stat-label">KK</span>
-                                    </div>
-                                    <div class="stat-item">
-                                        <span class="stat-number">{{ rand(500, 800) }}</span>
-                                        <span class="stat-label">Jiwa</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endfor
-            </div>
-        </div>
-    </section>
-
-    <section class="org-info-section section">
-        <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="bi bi-diagram-3"></i>
-                        </div>
-                        <h4>Struktur Terpadu</h4>
-                        <p>Organisasi pemerintahan desa yang solid dengan pembagian tugas yang jelas untuk memberikan
-                            pelayanan terbaik.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="bi bi-clock"></i>
-                        </div>
-                        <h4>Pelayanan 24/7</h4>
-                        <p>Sistem pelayanan yang terintegrasi dan dapat diakses kapan saja untuk kemudahan masyarakat.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="bi bi-award"></i>
-                        </div>
-                        <h4>Tim Profesional</h4>
-                        <p>Perangkat desa yang kompeten dan berpengalaman dalam memberikan pelayanan prima kepada
-                            masyarakat.</p>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </section>
 @endsection
+
 
 @push('styles')
     <style>

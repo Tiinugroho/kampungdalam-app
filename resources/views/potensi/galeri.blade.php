@@ -27,9 +27,9 @@
                 @forelse($galleries as $gallery)
                     <div class="col-lg-4 col-md-6" data-aos="fade-up">
                         <div class="gallery-card">
-                            <a href="{{ asset('storage/' . $gallery->image_path) }}" data-lightbox="gallery"
+                            <a href="{{ asset('storage/gallery/' . $gallery->image_path) }}" data-lightbox="gallery"
                                 data-title="{{ $gallery->title }}">
-                                <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="{{ $gallery->title }}"
+                                <img src="{{ asset('storage/gallery/' . $gallery->image_path) }}" alt="{{ $gallery->title }}"
                                     class="img-fluid rounded">
                             </a>
                             <div class="gallery-info">

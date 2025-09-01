@@ -28,13 +28,7 @@
                         <li><a href="{{ route('vision-mission') }}">Visi & Misi</a></li>
                         <li><a href="{{ route('history') }}">Sejarah Desa</a></li>
                         <li><a href="{{ route('officials') }}">Perangkat Desa</a></li>
-                        <li><a href="{{ route('organization-structure') }}">Struktur
-                                Organisasi</a></li>
-                        <li><a href="{{ route('contact') }}"
-                                class="{{ request()->routeIs('contact') ? 'active' : '' }}">
-                                Kontak
-                            </a>
-                        </li>
+                        <li><a href="{{ route('organization-structure') }}">Struktur Organisasi</a></li>
                     </ul>
                 </li>
 
@@ -67,17 +61,13 @@
 
                 <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">
                         Kontak
-                    </a></li>
+                    </a>
+                </li>
             </ul>
         </nav>
 
         <!-- Header Actions - Moved to the right -->
         <div class="header-actions d-flex align-items-center">
-            <!-- Search Button for Desktop -->
-            {{-- <button type="button" class="search-toggle btn btn-outline-primary d-none d-md-flex" data-bs-toggle="modal"
-                data-bs-target="#searchModal">
-                <i class="bi bi-search"></i>
-            </button> --}}
 
             <!-- Mobile Navigation Toggle - FIXED: Clean class structure -->
             <button class="mobile-nav-toggle d-lg-none" type="button">
@@ -104,7 +94,8 @@
             <ul class="mobile-nav-list">
                 <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">
                         <i class="bi bi-house-door"></i> Beranda
-                    </a></li>
+                    </a>
+                </li>
 
                 <li class="mobile-dropdown">
                     <a href="#" class="mobile-dropdown-toggle">
@@ -137,7 +128,8 @@
 
                 <li><a href="{{ route('sgds') }}" class="{{ request()->routeIs('sgds') ? 'active' : '' }}">
                         <i class="bi bi-house-door"></i> Data & Statistik
-                    </a></li>
+                    </a>
+                </li>
 
                 <li class="mobile-dropdown">
                     <a href="#" class="mobile-dropdown-toggle">
@@ -154,7 +146,8 @@
 
                 <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">
                         <i class="bi bi-telephone"></i> Kontak
-                    </a></li>
+                    </a>
+                </li>
             </ul>
 
         </div>
@@ -416,12 +409,12 @@
     /* Desktop Navigation Styles */
     .navmenu ul {
         margin: 0;
-        margin-left: 4rem;
+        margin-left: 10rem;
         padding: 0;
         list-style: none;
         display: flex;
         align-items: center;
-        gap: .5rem;
+        gap: 1rem;
     }
 
     .navmenu li {

@@ -37,45 +37,89 @@ ROUTE: /berita
                 </div>
             </div>
             <div class="row gy-4">
-                @if ($featuredNews->count() > 0)
-                    <div class="col-lg-8" data-aos="fade-right">
-                        @php $mainFeatured = $featuredNews->first(); @endphp
-                        <div class="featured-card">
-                            <div class="featured-image">
-                                <img src="{{ $mainFeatured->featured_image ? Storage::url('news/' . $mainFeatured->featured_image) : '/placeholder.svg?height=400&width=600&text=Berita+Utama' }}"
-                                    alt="{{ $mainFeatured->title }}" loading="lazy">
-                                <div class="featured-overlay">
-                                    <span class="featured-category">{{ ucfirst($mainFeatured->category) }}</span>
+                {{-- News Carousel - Left Side --}}
+                <div class="col-lg-8" data-aos="fade-right">
+                    @if ($featuredNews && $featuredNews->count() > 0)
+                        <div class="news-carousel-wrapper">
+                            <div id="featuredNewsCarousel" class="carousel slide" data-bs-ride="carousel"
+                                data-bs-interval="6000">
+                                {{-- Indicators --}}
+                                <div class="carousel-indicators">
+                                    @foreach ($featuredNews->take(6) as $index => $news)
+                                        <button type="button" data-bs-target="#featuredNewsCarousel"
+                                            data-bs-slide-to="{{ $index }}"
+                                            class="{{ $index === 0 ? 'active' : '' }}"
+                                            aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                            aria-label="Slide {{ $index + 1 }}"></button>
+                                    @endforeach
                                 </div>
-                            </div>
-                            <div class="featured-content">
-                                <div class="featured-meta">
-                                    <span class="featured-date">
-                                        <i class="bi bi-calendar"></i>
-                                        {{ $mainFeatured->published_at->format('d M Y') }}
-                                    </span>
-                                    <span class="featured-author">
-                                        <i class="bi bi-person"></i>
-                                        {{ $mainFeatured->author->name ?? 'Admin Desa' }}
-                                    </span>
+
+                                {{-- Carousel Items --}}
+                                <div class="carousel-inner">
+                                    @foreach ($featuredNews->take(6) as $index => $news)
+                                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                            <div class="featured-card">
+                                                <div class="featured-image">
+                                                    <img src="{{ $news->featured_image
+                                                        ? Storage::url('news/' . $news->featured_image)
+                                                        : '/placeholder.svg?height=400&width=600&text=Berita+Utama' }}"
+                                                        alt="{{ $news->title }}" class="d-block w-100" loading="lazy">
+                                                    <div class="featured-overlay">
+
+                                                    </div>
+                                                </div>
+                                                <div class="featured-content">
+                                                    <div class="featured-meta">
+                                                        <span
+                                                            class="featured-category">{{ ucfirst($news->category) }}</span>
+                                                        <span class="featured-date">
+                                                            <i class="bi bi-calendar"></i>
+                                                            {{ $news->published_at->format('d M Y') }}
+                                                        </span>
+                                                        <span class="featured-author">
+                                                            <i class="bi bi-person"></i>
+                                                            {{ $news->author->name ?? 'Admin Desa' }}
+                                                        </span>
+                                                        <span class="featured-views">
+                                                            <i class="bi bi-eye"></i> {{ $news->views ?? 0 }}
+                                                        </span>
+                                                    </div>
+                                                    <h3 class="featured-title">
+                                                        <a href="{{ route('news.show', $news->slug) }}" style="color: var(--neutral-white);">
+                                                            {{ $news->title }}
+                                                        </a>
+                                                    </h3>
+                                                    <p class="featured-excerpt">
+                                                        {{ Str::limit($news->excerpt, 180) }}
+                                                    </p>
+                                                    <a href="{{ route('news.show', $news->slug) }}" class="featured-btn">
+                                                        Baca Selengkapnya <i class="bi bi-arrow-right"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <h3 class="featured-title">{{ $mainFeatured->title }}</h3>
-                                <p class="featured-excerpt">
-                                    {{ Str::limit($mainFeatured->excerpt, 200) }}
-                                </p>
-                                <a href="{{ route('news.show', $mainFeatured->slug) }}" class="featured-btn">
-                                    Baca Selengkapnya
-                                    <i class="bi bi-arrow-right"></i>
-                                </a>
+
+                                {{-- Controls --}}
+                                <button class="carousel-control-prev" type="button" data-bs-target="#featuredNewsCarousel"
+                                    data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#featuredNewsCarousel"
+                                    data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
                             </div>
                         </div>
-                    </div>
-                @else
-                    <div class="col-lg-8" data-aos="fade-right">
+                    @else
+                        {{-- Jika tidak ada berita utama --}}
                         <div class="featured-card">
                             <div class="featured-image">
                                 <img src="/placeholder.svg?height=400&width=600&text=Belum+Ada+Berita+Utama"
-                                    alt="No Featured News" loading="lazy">
+                                    alt="No Featured News" class="d-block w-100" loading="lazy">
                                 <div class="featured-overlay">
                                     <span class="featured-category">Informasi</span>
                                 </div>
@@ -97,13 +141,14 @@ ROUTE: /berita
                                     Desa Kampung Dalam.
                                 </p>
                                 <a href="#" class="featured-btn disabled">
-                                    Baca Selengkapnya
-                                    <i class="bi bi-arrow-right"></i>
+                                    Baca Selengkapnya <i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                </div>
+
+                {{-- News Sidebar - Right Side --}}
                 <div class="col-lg-4" data-aos="fade-left">
                     <div class="trending-news">
                         <h4 class="trending-title">Berita Populer</h4>
@@ -111,12 +156,16 @@ ROUTE: /berita
                             @forelse($popularNews as $news)
                                 <div class="trending-item">
                                     <div class="trending-image">
-                                        <img src="{{ $news->featured_image ? Storage::url('news/' . $news->featured_image) : '/placeholder.svg?height=80&width=80&text=News' }}"
+                                        <img src="{{ $news->featured_image
+                                            ? Storage::url('news/' . $news->featured_image)
+                                            : '/placeholder.svg?height=80&width=80&text=News' }}"
                                             alt="{{ $news->title }}">
                                     </div>
                                     <div class="trending-content">
-                                        <h6><a
-                                                href="{{ route('news.show', $news->slug) }}">{{ Str::limit($news->title, 50) }}</a>
+                                        <h6>
+                                            <a href="{{ route('news.show', $news->slug) }}">
+                                                {{ Str::limit($news->title, 50) }}
+                                            </a>
                                         </h6>
                                         <span class="trending-date">{{ $news->published_at->format('d M Y') }}</span>
                                     </div>
@@ -133,6 +182,7 @@ ROUTE: /berita
             </div>
         </div>
     </section>
+
 
     {{-- News Filter --}}
     <section class="news-filter section">
@@ -197,6 +247,32 @@ ROUTE: /berita
 
 @push('styles')
     <style>
+        :root {
+            --primary-blue: #1e40af;
+            --primary-blue-light: #3b82f6;
+            --primary-blue-dark: #1e3a8a;
+            --success-green: #059669;
+            --success-green-light: #10b981;
+            --warning-yellow: #d97706;
+            --warning-yellow-light: #f59e0b;
+            --neutral-white: #ffffff;
+            --neutral-gray-50: #f9fafb;
+            --neutral-gray-100: #f3f4f6;
+            --neutral-gray-200: #e5e7eb;
+            --neutral-gray-300: #d1d5db;
+            --neutral-gray-400: #9ca3af;
+            --neutral-gray-500: #6b7280;
+            --neutral-gray-600: #4b5563;
+            --neutral-gray-700: #374151;
+            --neutral-gray-800: #1f2937;
+            --neutral-gray-900: #111827;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
         .hero {
             /* margin-top: 10%; */
             min-height: 60vh;
@@ -317,21 +393,34 @@ ROUTE: /berita
             background: #2563eb;
         }
 
-        .featured-card {
-            background: white;
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        .news-carousel-wrapper {
+            background: var(--neutral-white);
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--neutral-gray-200);
+            position: relative;
+            z-index: 5;
         }
 
-        .featured-card:hover {
-            transform: translateY(-10px);
+        .featured-card {
+            /* background: white; */
+            border-radius: 25px;
+            border: 1px solid #e5e7eb;
+            /* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); */
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+
         }
+
+        /* .featured-card:hover {
+                            transform: translateY(-10px);
+                        } */
 
         .featured-image {
             position: relative;
-            height: 400px;
+            height: 600px;
             overflow: hidden;
         }
 
@@ -343,13 +432,16 @@ ROUTE: /berita
         }
 
         .featured-card:hover .featured-image img {
-            transform: scale(1.05);
+            /* transform: scale(1.05); */
         }
 
         .featured-overlay {
             position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.4) 50%, transparent 100%);
         }
 
         .featured-category {
@@ -362,54 +454,120 @@ ROUTE: /berita
         }
 
         .featured-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 2.5rem;
+            color: var(--neutral-white);
+            z-index: 10;
         }
 
         .featured-meta {
             display: flex;
             gap: 2rem;
             margin-bottom: 1rem;
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
+            color: var(--neutral-white);
 
-        .featured-meta span {
-            display: flex;
+            font-size: 0.9rem;
             align-items: center;
-            gap: 0.5rem;
         }
 
         .featured-title {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #1f2937;
+            color: var(--neutral-white);
             margin-bottom: 1rem;
             line-height: 1.3;
         }
 
         .featured-excerpt {
-            color: #6b7280;
+            color: var(--neutral-white);
             line-height: 1.6;
             margin-bottom: 2rem;
         }
 
         .featured-btn {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
+            gap: 0.75rem;
+            color: var(--neutral-white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 15;
+            cursor: pointer;
         }
 
         .featured-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            color: var(--neutral-white);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 56px;
+            height: 56px;
+            background: var(--neutral-white);
+            border-radius: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.9;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
+            z-index: 20;
+        }
+
+        .carousel-control-prev {
+            left: 24px;
+        }
+
+        .carousel-control-next {
+            right: 24px;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 1;
+            background: var(--neutral-white);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 24px;
+            height: 24px;
+            background-size: 24px 24px;
+            filter: invert(0.2);
+        }
+
+        .carousel-indicators {
+            bottom: 24px;
+            margin-bottom: 0;
+            z-index: 15;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 6px;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .carousel-indicators button.active {
+            background: var(--neutral-white);
+            transform: scale(1.3);
         }
 
         .featured-btn.disabled {
@@ -803,7 +961,7 @@ ROUTE: /berita
                         // Populate news cards
                         data.news.forEach(news => {
                             newsCardsWrapper.insertAdjacentHTML('beforeend', generateNewsCardHtml(
-                            news));
+                                news));
                         });
                         // Populate pagination links
                         paginationLinksContainer.innerHTML = data.pagination_html;

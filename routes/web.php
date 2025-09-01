@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UmkmController;
@@ -9,13 +10,17 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\VillageProfileController;
 use App\Http\Controllers\Admin\VillageOfficialController;
 use App\Http\Controllers\Admin\TourismPotentialController;
+use App\Http\Controllers\Admin\SgdsController as AdminSgdsController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TourismController;
+use App\Http\Controllers\Frontend\SgdsController as FrontendSgdsController;
 use App\Http\Controllers\Frontend\NewsController as FrontendNewsController;
 use App\Http\Controllers\FrontEnd\GalleryController as FrontEndGalleryController;
-use App\Http\Controllers\SgdsController;
+
+// use App\Http\Controllers\FrontEnd\SgdsController;
 
 
 /*
@@ -26,7 +31,7 @@ use App\Http\Controllers\SgdsController;
 
 // Frontend Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/statistik', [SgdsController::class, 'index'])->name('sgds');
+Route::get('/statistik', [FrontendSgdsController::class, 'index'])->name('sgds');
 
 // Profile Routes
 Route::prefix('profil')->group(function () {
@@ -76,39 +81,28 @@ Route::get('/robots.txt', [HomeController::class, 'robots'])->name('robots');
 // Admin Routes (Protected by auth middleware)
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-
-    // Village Profile Management
     Route::resource('village-profiles', VillageProfileController::class);
-
-    // Village Officials Management
-    Route::resource('village-officials', VillageOfficialController::class);
-
-    // Services Management
+    Route::resource('village-official', VillageOfficialController::class);
     Route::resource('services', ServiceController::class);
-
-    // News Management
+    Route::resource('faqs', FaqController::class);
     Route::resource('news', NewsController::class);
     Route::post('news/{news}/toggle-featured', [NewsController::class, 'toggleFeatured'])->name('news.toggle-featured');
     Route::post('news/{news}/toggle-published', [NewsController::class, 'togglePublished'])->name('news.toggle-published');
-
-    // Gallery Management
+    
     Route::resource('galleries', AdminGalleryController::class);
     Route::post('galleries/{gallery}/toggle-featured', [AdminGalleryController::class, 'toggleFeatured'])->name('galleries.toggle-featured');
-
-    // Tourism Potential Management
+    
     Route::resource('tourism-potentials', TourismPotentialController::class);
     Route::post('tourism-potentials/{tourismPotential}/toggle-featured', [TourismPotentialController::class, 'toggleFeatured'])->name('tourism-potentials.toggle-featured');
     Route::post('tourism-potentials/{tourismPotential}/toggle-active', [TourismPotentialController::class, 'toggleActive'])->name('tourism-potentials.toggle-active');
-
-    // UMKM Management
+    
     Route::resource('umkm', UmkmController::class);
-
-    // FAQ Management
-    Route::resource('faqs', FaqController::class);
-
-    // User Management
+    Route::post('umkm/{umkm}/toggle-active', [UmkmController::class, 'toggleActive'])->name('umkm.toggle-active');
+    
+    Route::resource('sgds', AdminSgdsController::class);
     Route::resource('users', UserController::class);
     Route::post('users/{user}/toggle-status', [UserController::class, 'toggleStatus'])->name('users.toggle-status');
 });
+
 // Authentication Routes dari Breeze
 require __DIR__ . '/auth.php';

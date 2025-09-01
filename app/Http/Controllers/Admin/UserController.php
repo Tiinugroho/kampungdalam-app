@@ -31,24 +31,29 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:super-admin,staff',
+            'password' => 'required|string|min:8',
+            'role' => 'required|in:staff',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->all();
-        $data['password'] = Hash::make($request->password);
-        $data['email_verified_at'] = now();
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role = $request->role;
+        $user->email_verified_at = now();
 
         if ($request->hasFile('avatar')) {
-            $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
+            $user->avatar = $request->file('avatar')->store('avatars', 'public');
         }
 
-        User::create($data);
+        $user->save();
 
         return redirect()->route('admin.users.index')
-                        ->with('success', 'User berhasil ditambahkan.');
+            ->with('success', 'User berhasil ditambahkan.');
     }
+
+
 
     public function show(User $user)
     {
@@ -65,28 +70,33 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
-            'role' => 'required|in:super-admin,staff',
+            'password' => 'nullable|string|min:8',
+            'role' => 'required|in:staff',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $data = $request->only(['name', 'email', 'role']);
 
-        if ($request->password) {
+        // Update password jika ada
+        if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
 
+        // Update avatar
         if ($request->hasFile('avatar')) {
-            if ($user->avatar) {
+            // Hapus avatar lama jika ada (dan bukan default)
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
                 Storage::disk('public')->delete($user->avatar);
             }
+
+            // Simpan avatar baru
             $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
         }
 
         $user->update($data);
 
         return redirect()->route('admin.users.index')
-                        ->with('success', 'User berhasil diperbarui.');
+            ->with('success', 'User berhasil diperbarui.');
     }
 
     public function destroy(User $user)
@@ -103,15 +113,7 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users.index')
-                        ->with('success', 'User berhasil dihapus.');
-    }
-
-    public function toggleStatus(User $user)
-    {
-        $user->update(['is_active' => !$user->is_active]);
-
-        $status = $user->is_active ? 'diaktifkan' : 'dinonaktifkan';
-        return back()->with('success', "User berhasil {$status}.");
+            ->with('success', 'User berhasil dihapus.');
     }
 
     public function resetPassword(User $user)

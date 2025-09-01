@@ -17,12 +17,15 @@ class User extends Authenticatable
         'password',
         'role',
         'avatar',
+        'email_verified_at',
+        'last_logout_at',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+    protected $dates = ['last_logout_at'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',

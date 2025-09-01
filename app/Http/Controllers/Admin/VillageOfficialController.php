@@ -12,12 +12,12 @@ class VillageOfficialController extends Controller
     public function index()
     {
         $officials = VillageOfficial::ordered()->get();
-        return view('admin.village-officials.index', compact('officials'));
+        return view('admin.village-official.index', compact('officials'));
     }
 
     public function create()
     {
-        return view('admin.village-officials.create');
+        return view('admin.village-official.create');
     }
 
     public function store(Request $request)
@@ -40,13 +40,13 @@ class VillageOfficialController extends Controller
 
         VillageOfficial::create($data);
 
-        return redirect()->route('admin.village-officials.index')
+        return redirect()->route('admin.village-official.index')
                         ->with('success', 'Perangkat desa berhasil ditambahkan.');
     }
 
     public function edit(VillageOfficial $villageOfficial)
     {
-        return view('admin.village-officials.edit', compact('villageOfficial'));
+        return view('admin.village-official.edit', compact('villageOfficial'));
     }
 
     public function update(Request $request, VillageOfficial $villageOfficial)
@@ -72,7 +72,7 @@ class VillageOfficialController extends Controller
 
         $villageOfficial->update($data);
 
-        return redirect()->route('admin.village-officials.index')
+        return redirect()->route('admin.village-official.index')
                         ->with('success', 'Perangkat desa berhasil diperbarui.');
     }
 
@@ -84,7 +84,7 @@ class VillageOfficialController extends Controller
 
         $villageOfficial->delete();
 
-        return redirect()->route('admin.village-officials.index')
+        return redirect()->route('admin.village-official.index')
                         ->with('success', 'Perangkat desa berhasil dihapus.');
     }
 }

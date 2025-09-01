@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             VillageOfficialSeeder::class,
             ServiceSeeder::class,
             UmkmSeeder::class,
-            TourismPotentialSeeder::class,
+            // TourismPotentialSeeder::class,
             ServiceSeeder::class,
             FaqsSeeder::class,
             SgdsSeeder::class,

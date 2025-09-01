@@ -15,7 +15,7 @@ ROUTE: /informasi/layanan
 @section('content')
     {{-- Hero Section --}}
     <section id="hero" class="hero section">
-        <div class="hero-bg" style="background-image: url('{{ asset('slider5.jpg') }}');"></div> {{-- Ganti dengan gambar hero layanan --}}
+        <div class="hero-bg" style="background-image: url('{{ asset('slider1.jpg') }}');"></div> {{-- Ganti dengan gambar hero layanan --}}
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="row justify-content-center text-center">

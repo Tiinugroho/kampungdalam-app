@@ -13,8 +13,8 @@ class TourismPotential extends Model
     protected $fillable = [
         'name',
         'slug',
-        'address',
         'category',
+        'address',
         'description',
         'featured_image',
         'gallery_images',
@@ -37,14 +37,11 @@ class TourismPotential extends Model
     ];
 
     protected $casts = [
-        'gallery_images' => 'array',
-        'facilities' => 'array',
-        'activities' => 'array',
-        'latitude' => 'decimal:8',
-        'longitude' => 'decimal:8',
-        'ticket_price' => 'decimal:2',
-        'is_featured' => 'boolean',
-        'is_active' => 'boolean',
+        'gallery_images' => 'array',   // ✅ otomatis decode JSON ke array
+        'facilities'     => 'array',
+        'activities'     => 'array',
+        'is_featured'    => 'boolean',
+        'is_active'      => 'boolean',
     ];
 
     // Scopes

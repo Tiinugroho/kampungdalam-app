@@ -46,7 +46,7 @@
                         <div class="icon icon-white" style="padding-top: 1.3rem;"><img
                                 src="{{ asset('vector/Asset189.svg') }}" alt=""></div>
                         <h4 class="title">
-                            <a href="{{url('statistik')}}">Potensi Desa</a>
+                            <a href="{{ url('statistik') }}">Potensi Desa</a>
                         </h4>
                     </div>
                 </div>
@@ -240,7 +240,7 @@
             </div>
         </div>
     </section>
-        
+
     <!-- Services Section -->
     <section id="services" class="services section">
         <div class="container section-title" data-aos="fade-up">
@@ -280,8 +280,9 @@
         </div>
     </section>
     <!-- UMKM & Tourism Section -->
-            
-    <section id="umkm-tourism" class="umkm-tourism section" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.85) 0%, rgba(5, 150, 105, 0.75) 100%);">
+
+    <section id="umkm-tourism" class="umkm-tourism section"
+        style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.85) 0%, rgba(5, 150, 105, 0.75) 100%);">
         <div class="container hero-content py-5">
             <div class="row align-items-center" data-aos="zoom-out">
                 <!-- Kolom Penjelasan (Kiri) -->
@@ -391,9 +392,9 @@
                             </div>
                         @endforelse
                     </div>
-                    <div class="text-center mt-4" data-aos="fade-up">
-                        <a href="{{ route('umkm') }}" class="custom-btn primary-btn">Lihat Semua UMKM</a>
-                    </div>
+                    {{-- <div class="text-center mt-4" data-aos="fade-up">
+                        <a href="" class="custom-btn primary-btn">Lihat Semua UMKM</a>
+                    </div> --}}
                 </div>
                 <!-- Tourism Content -->
                 <div class="tab-pane fade" id="tourism" role="tabpanel">
@@ -581,24 +582,26 @@
             <h2>Galeri</h2>
             <p>Dokumentasi kegiatan dan keindahan Desa {{ $profile->village_name ?? 'Kampung Dalam' }}</p>
         </div>
+
         <div class="container">
             <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
                 <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-                    @forelse($featuredGallery->take(8) as $gallery)
+                    @forelse($featuredGallery as $gallery)
                         <div
                             class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ strtolower($gallery->category) }}">
-                            <img src="{{ $gallery->image_path && Storage::disk('public')->exists($gallery->image_path) ? asset('storage/' . $gallery->image_path) : '/placeholder.svg?height=300&width=400&text=Gallery+' . $loop->iteration }}"
-                                class="img-fluid" alt="{{ $gallery->title }}" loading="lazy">
+                           <img src="{{ asset('storage/gallery/' . $gallery->image_path) }}" class="img-fluid" alt="{{ $gallery->title }}" loading="lazy">
+
+
                             <div class="portfolio-info">
-                                <h4>{{ $gallery->title }}</h4>
-                                <p>{{ $gallery->description }}</p>
-                                <a href="{{ $gallery->image_path && Storage::disk('public')->exists($gallery->image_path) ? asset('storage/' . $gallery->image_path) : '/placeholder.svg?height=800&width=1200&text=Gallery+' . $loop->iteration }}"
-                                    title="{{ $gallery->title }}"
-                                    data-gallery="portfolio-gallery-{{ strtolower($gallery->category) }}"
+                                <h4 class="text-dark">{{ $gallery->title }}</h4>
+                                <p>{{ $gallery->description ?? 'Dokumentasi kegiatan desa' }}</p>
+                                <a href="{{ asset('storage/gallery/' . $gallery->image_path) }}"
+                                    data-gallery="portfolio-gallery-{{ strtolower($gallery->category ?? 'default') }}"
                                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                             </div>
                         </div>
                     @empty
+                        {{-- Fallback jika tidak ada sama sekali --}}
                         @for ($i = 1; $i <= 8; $i++)
                             <div class="col-lg-4 col-md-6 portfolio-item isotope-item">
                                 <img src="/placeholder.svg?height=300&width=400&text=Gallery+{{ $i }}"
@@ -615,11 +618,13 @@
                     @endforelse
                 </div>
             </div>
+
             <div class="text-center mt-4" data-aos="fade-up">
                 <a href="{{ route('gallery') }}" class="custom-btn primary-btn">Lihat Semua Galeri</a>
             </div>
         </div>
     </section>
+
 
     <!-- FAQ Section -->
     <section id="faq" class="faq section bg-light">
@@ -845,6 +850,7 @@
             line-height: 1.6;
             max-width: 600px;
         }
+
         .hero-desc {
             /* font-size: clamp(1.2rem, 2.5vw, 1.6rem); */
             color: rgba(255, 255, 255, 0.95);

@@ -24,14 +24,14 @@ class FaqController extends Controller
         $request->validate([
             'question' => 'required|string|max:255',
             'answer' => 'required|string',
-            'category' => 'required|in:layanan,administrasi,umum,wisata,umkm',
+            'category' => 'required',
             'order' => 'required|integer|min:0',
             'is_active' => 'boolean',
         ]);
 
         Faq::create($request->all());
 
-        return redirect()->route('admin.faq.index')
+        return redirect()->route('admin.faqs.index')
                         ->with('success', 'FAQ berhasil ditambahkan.');
     }
 
@@ -52,7 +52,7 @@ class FaqController extends Controller
 
         $faq->update($request->all());
 
-        return redirect()->route('admin.faq.index')
+        return redirect()->route('admin.faqs.index')
                         ->with('success', 'FAQ berhasil diperbarui.');
     }
 
@@ -60,7 +60,7 @@ class FaqController extends Controller
     {
         $faq->delete();
 
-        return redirect()->route('admin.faq.index')
+        return redirect()->route('admin.faqs.index')
                         ->with('success', 'FAQ berhasil dihapus.');
     }
 }

@@ -36,7 +36,6 @@ class Umkm extends Model
     protected $casts = [
         'product_images' => 'array',
         'capital' => 'decimal:2',
-        'monthly_revenue' => 'decimal:2',
         'established_date' => 'date',
         'is_active' => 'boolean',
     ];

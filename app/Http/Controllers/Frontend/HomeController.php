@@ -25,10 +25,26 @@ class HomeController extends Controller
         // Get content for homepage
         $latestNews = News::get();
         $featuredGallery = Gallery::featured()->ordered()->take(8)->get();
+
+        // Jika jumlah < 8, ambil sisanya dari galeri biasa
+        if ($featuredGallery->count() < 8) {
+            $remaining = 8 - $featuredGallery->count();
+            $fallback = Gallery::where('is_featured', false)
+                ->orderBy('created_at', 'desc')
+                ->take($remaining)
+                ->get();
+
+            $featuredGallery = $featuredGallery->merge($fallback);
+        }
+
         $services = Service::active()->take(6)->get();
         $officials = VillageOfficial::active()->ordered()->get();
         $tourismPotentials = TourismPotential::active()->take(4)->get();
-        $umkms = Umkm::active()->take(6)->get();
+        $umkms = Umkm::active()
+            ->latest()      // urutkan berdasarkan created_at DESC (terbaru di atas)
+            ->take(6)       // ambil 6 data terbaru
+            ->get();
+
         $faqs = Faq::active()->ordered()->get()->groupBy('category');
         $categories = Faq::select('category')->distinct()->get();
 
